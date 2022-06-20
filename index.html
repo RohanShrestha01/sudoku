@@ -4,39 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Montserrat:wght@500;600&family=Texturina:opsz,wght@12..72,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles/styles.css" />
     <title>Play Sudoku</title>
   </head>
   <body>
     <main>
       <section id="main-menu">
         <h1>Sudoku - Main Menu</h1>
-      </section>
-      <section>
-        <ul>
-          <li>
-            <label for="player-name">Enter Player Name </label>
-            <input type="text" id="player-name" />
-          </li>
-          <li>
-            Select The Difficulty
-            <ul>
-              <li><button type="button">Easy</button></li>
-              <li><button type="button">Medium</button></li>
-              <li><button type="button">Hard</button></li>
-            </ul>
-          </li>
-          <li>
-            Select Game Mode
-            <ul>
-              <li><button type="button">Timer</button></li>
-              <li><button type="button">Countdown</button></li>
-              <li><button type="button">Hints</button></li>
-            </ul>
-          </li>
-          <li>Start Game</li>
-        </ul>
+        <form action="">
+          <ul>
+            <li class="menu-option">
+              <label for="player-name">
+                <p>Enter Player Name</p>
+              </label>
+              <input
+                type="text"
+                id="player-name"
+                maxlength="14"
+                minlength="2"
+                spellcheck="false"
+                required
+                autofocus
+              />
+            </li>
+            <li class="menu-option">
+              <p>Select The Difficulty</p>
+              <ul>
+                <li><button class="choice-button">Easy</button></li>
+                <li><button class="choice-button">Medium</button></li>
+                <li><button class="choice-button">Hard</button></li>
+              </ul>
+            </li>
+            <li class="menu-option">
+              <p>Select Game Mode</p>
+              <ul>
+                <li><button class="choice-button">Timer</button></li>
+                <li><button class="choice-button">Countdown</button></li>
+                <li><button class="choice-button">Hints</button></li>
+              </ul>
+            </li>
+            <li class="menu-option">
+              <button type="submit" id="start-game-btn">
+                <p>Start Game</p>
+              </button>
+            </li>
+          </ul>
+        </form>
       </section>
     </main>
   </body>

@@ -1,0 +1,84 @@
+/* Dark Mode  reddit #1a1a1b
+google #202124  #303134*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2e2e2e;
+  background-color: #f1f2f2;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  width: 32rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 9px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
+}
+
+#main-menu {
+  cursor: default;
+  margin: 2.5rem 0;
+}
+
+#main-menu h1 {
+  font-family: 'IM Fell French Canon SC', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+#main-menu ul {
+  text-align: center;
+}
+
+.menu-option {
+  padding-top: 0.875rem;
+}
+
+.menu-option li {
+  padding-top: 0.625rem;
+}
+
+.menu-option p {
+  font-family: 'Texturina', serif;
+  font-size: 1.5rem;
+}
+
+#player-name {
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0.625rem;
+  caret-color: #2e2e2e;
+}
+
+#player-name:focus-visible {
+  outline: 0;
+}
+
+#start-game-btn,
+.choice-button,
+#player-name {
+  border: 0;
+  background-color: inherit;
+  color: inherit;
+  cursor: inherit;
+}
+
+.choice-button {
+  font-size: 1.3rem;
+}
