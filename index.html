@@ -12,6 +12,10 @@
     />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/main-menu.css" />
+    <script src="/scripts/main-menu.js" defer></script>
+    <script src="/scripts/app.js" defer></script>
+    <script src="/scripts/game.js" defer></script>
     <title>Play Sudoku</title>
   </head>
   <body>
@@ -20,7 +24,7 @@
         <h1>Sudoku - Main Menu</h1>
         <form action="">
           <ul>
-            <li class="menu-option">
+            <li class="menu-option selected">
               <label for="player-name">
                 <p>Enter Player Name</p>
               </label>
@@ -37,17 +41,19 @@
             <li class="menu-option">
               <p>Select The Difficulty</p>
               <ul>
-                <li><button class="choice-button">Easy</button></li>
-                <li><button class="choice-button">Medium</button></li>
-                <li><button class="choice-button">Hard</button></li>
+                <li>
+                  <button class="option-choice-btn">Easy</button>
+                </li>
+                <li><button class="option-choice-btn">Medium</button></li>
+                <li><button class="option-choice-btn">Hard</button></li>
               </ul>
             </li>
             <li class="menu-option">
               <p>Select Game Mode</p>
               <ul>
-                <li><button class="choice-button">Timer</button></li>
-                <li><button class="choice-button">Countdown</button></li>
-                <li><button class="choice-button">Hints</button></li>
+                <li><button class="option-choice-btn">Timer</button></li>
+                <li><button class="option-choice-btn">Countdown</button></li>
+                <li><button class="option-choice-btn">Hints</button></li>
               </ul>
             </li>
             <li class="menu-option">

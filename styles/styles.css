@@ -21,10 +21,10 @@ li {
 }
 
 main {
-  width: 32rem;
+  width: 31rem;
   display: flex;
   justify-content: center;
-  border-radius: 9px;
+  border-radius: 80px;
   background-color: #ffffff;
   box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
 }
@@ -71,7 +71,7 @@ main {
 }
 
 #start-game-btn,
-.choice-button,
+.option-choice-btn,
 #player-name {
   border: 0;
   background-color: inherit;
@@ -79,6 +79,6 @@ main {
   cursor: inherit;
 }
 
-.choice-button {
+.option-choice-btn {
   font-size: 1.3rem;
 }

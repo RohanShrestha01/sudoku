@@ -1,0 +1,11 @@
+.menu-option.selected p {
+  font-size: 1.7rem;
+  color: blue;
+}
+
+.option-choice-btn.selected,
+.menu-option.selected #player-name {
+  font-size: 1.5rem;
+  color: blue;
+  caret-color: blue;
+}
