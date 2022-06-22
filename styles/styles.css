@@ -1,5 +1,3 @@
-/* Dark Mode  reddit #1a1a1b
-google #202124  #303134*/
 * {
   padding: 0;
   margin: 0;
@@ -30,8 +28,8 @@ main {
 }
 
 #main-menu {
-  cursor: default;
-  margin: 2.5rem 0;
+  padding: 2.5rem 0;
+  height: 37.7rem;
 }
 
 #main-menu h1 {
@@ -50,11 +48,13 @@ main {
 
 .menu-option li {
   padding-top: 0.625rem;
+  cursor: pointer;
 }
 
 .menu-option p {
   font-family: 'Texturina', serif;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 #player-name {
@@ -76,9 +76,9 @@ main {
   border: 0;
   background-color: inherit;
   color: inherit;
-  cursor: inherit;
 }
 
 .option-choice-btn {
   font-size: 1.3rem;
+  cursor: pointer;
 }
