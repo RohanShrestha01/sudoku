@@ -18,7 +18,8 @@
   color: rgb(37, 68, 172);
 }
 
-.menu-option li:hover .option-choice-btn {
+.menu-option li:hover .option-choice-btn,
+.menu-option:hover #player-name {
   font-size: 1.5rem;
   color: rgb(37, 68, 172);
 }

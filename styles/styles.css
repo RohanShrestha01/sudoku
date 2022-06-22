@@ -76,9 +76,9 @@ main {
   border: 0;
   background-color: inherit;
   color: inherit;
+  cursor: pointer;
 }
 
 .option-choice-btn {
   font-size: 1.3rem;
-  cursor: pointer;
 }

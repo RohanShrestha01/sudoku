@@ -1,5 +1,4 @@
 // For Keyboard Navigation
-let mainMenu = true;
 let selectedMenuOption = 0;
 let selectedOptionChoice = 0;
 let optionsSelected = 0;
@@ -15,6 +14,11 @@ function toggleMenuSelection(eventKey) {
 
 function toggleOptionChoiceSelection(eventKey) {
   optionChoiceBtns[selectedOptionChoice].classList.remove('selected');
+  if (eventKey === 'Enter') {
+    if (selectedMenuOption === 1) selectedOptionChoice = 1;
+    else if (selectedMenuOption === 2) selectedOptionChoice = 4;
+    if (selectedMenuOption !== 1) optionsSelected++;
+  }
 
   if (selectedMenuOption > 0 && selectedMenuOption < 3) {
     if (eventKey === 'ArrowDown') {
@@ -23,10 +27,6 @@ function toggleOptionChoiceSelection(eventKey) {
     } else if (eventKey === 'ArrowUp') {
       if (selectedOptionChoice === 3) selectedOptionChoice--;
       selectedOptionChoice--;
-    } else if (eventKey === 'Enter') {
-      if (selectedMenuOption === 1) selectedOptionChoice = 1;
-      else if (selectedMenuOption === 2) selectedOptionChoice = 4;
-      if (selectedMenuOption !== 1) optionsSelected++;
     }
     optionChoiceBtns[selectedOptionChoice].classList.add('selected');
   }
@@ -60,9 +60,10 @@ function menuOptionSelectionHandler(event) {
       toggleMenuSelection(event.key);
       toggleOptionChoiceSelection(event.key);
     } else if (selectedMenuOption === 3) {
-      if (playerNameInputElement.value.trim() !== '') optionsSelected++;
-      if (optionsSelected === 3) console.log('Success');
-      else console.log('fill all the details');
+      if (playerNameInputElement.value.trim() !== '' && optionsSelected < 3)
+        optionsSelected++;
+      if (optionsSelected === 3)
+        document.removeEventListener('keydown', menuOptionSelectionHandler);
     }
   }
   console.log(optionsSelected);
