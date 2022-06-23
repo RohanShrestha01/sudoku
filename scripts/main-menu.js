@@ -3,6 +3,12 @@ let selectedMenuOption = 0;
 let selectedOptionChoice = 0;
 let optionsSelected = 0;
 
+function inputFieldSVGToggler() {
+  if (playerNameInputElement.value.length > 0)
+    inputFieldSVG.style.visibility = 'visible';
+  else inputFieldSVG.style.visibility = 'hidden';
+}
+
 function toggleMenuSelection(eventKey) {
   menuOptionElements[selectedMenuOption].classList.remove('selected');
   if (eventKey === 'ArrowUp') {
@@ -32,7 +38,7 @@ function toggleOptionChoiceSelection(eventKey) {
   }
 }
 
-function menuOptionSelectionHandler(event) {
+function keyboardNavigationHandler(event) {
   let optionSumIndex = selectedMenuOption + selectedOptionChoice;
 
   if (event.key === 'ArrowDown') {
@@ -54,19 +60,22 @@ function menuOptionSelectionHandler(event) {
     } else {
       toggleOptionChoiceSelection(event.key);
     }
-    if (selectedMenuOption === 0) playerNameInputElement.value = '';
+    if (selectedMenuOption === 0) {
+      playerNameInputElement.value = '';
+      inputFieldSVGToggler();
+    }
   } else if (event.key === 'Enter') {
     if (selectedMenuOption < 3) {
       toggleMenuSelection(event.key);
       toggleOptionChoiceSelection(event.key);
     } else if (selectedMenuOption === 3) {
-      if (playerNameInputElement.value.trim() !== '' && optionsSelected < 3)
-        optionsSelected++;
-      if (optionsSelected === 3)
-        document.removeEventListener('keydown', menuOptionSelectionHandler);
+      if (playerNameInputElement.value !== '' && optionsSelected === 2)
+        document.removeEventListener('keydown', keyboardNavigationHandler);
     }
+  } else if (event.key === ' ') {
+    event.preventDefault();
   }
-  console.log(optionsSelected);
+
   if (selectedMenuOption === 0) playerNameInputElement.focus();
   else playerNameInputElement.blur();
 }

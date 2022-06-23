@@ -10,12 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Montserrat:wght@500;600&family=Texturina:opsz,wght@12..72,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/main-menu.css" />
-    <script src="/scripts/main-menu.js" defer></script>
-    <script src="/scripts/app.js" defer></script>
-    <script src="/scripts/game.js" defer></script>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/main-menu.css" />
+    <script src="scripts/main-menu.js" defer></script>
+    <script src="scripts/app.js" defer></script>
+    <script src="scripts/game.js" defer></script>
     <title>Play Sudoku</title>
   </head>
   <body>
@@ -30,29 +30,256 @@
             <input
               type="text"
               id="player-name"
-              maxlength="14"
-              minlength="2"
+              maxlength="8"
+              size="9"
               spellcheck="false"
-              required
               autofocus
             />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              id="input-field-svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              height="20px"
+              width="20px"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 check-circle-solid"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              height="20px"
+              width="20px"
+              display="none"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
           </li>
           <li class="menu-option">
             <p>Select The Difficulty</p>
             <ul>
               <li>
                 <button class="option-choice-btn">Easy</button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 check-circle-outline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  height="20px"
+                  width="20px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 check-circle-solid"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  height="20px"
+                  width="20px"
+                  display="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
               </li>
-              <li><button class="option-choice-btn">Medium</button></li>
-              <li><button class="option-choice-btn">Hard</button></li>
+              <li>
+                <button class="option-choice-btn">Medium</button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 check-circle-outline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  height="20px"
+                  width="20px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 check-circle-solid"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  height="20px"
+                  width="20px"
+                  display="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </li>
+              <li>
+                <button class="option-choice-btn">Hard</button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 check-circle-outline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  height="20px"
+                  width="20px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 check-circle-solid"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  height="20px"
+                  width="20px"
+                  display="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </li>
             </ul>
           </li>
           <li class="menu-option">
             <p>Select Game Mode</p>
             <ul>
-              <li><button class="option-choice-btn">Timer</button></li>
-              <li><button class="option-choice-btn">Countdown</button></li>
-              <li><button class="option-choice-btn">Hints</button></li>
+              <li>
+                <button class="option-choice-btn">Timer</button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 check-circle-outline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  height="20px"
+                  width="20px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 check-circle-solid"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  height="20px"
+                  width="20px"
+                  display="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </li>
+              <li>
+                <button class="option-choice-btn">Countdown</button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 check-circle-outline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  height="20px"
+                  width="20px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 check-circle-solid"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  height="20px"
+                  width="20px"
+                  display="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </li>
+              <li>
+                <button class="option-choice-btn">Hints</button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 check-circle-outline"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  height="20px"
+                  width="20px"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 check-circle-solid"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  height="20px"
+                  width="20px"
+                  display="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </li>
             </ul>
           </li>
           <li class="menu-option">
