@@ -3,10 +3,39 @@ let selectedMenuOption = 0;
 let selectedOptionChoice = 0;
 let optionsSelected = 0;
 
+function SVGChanger() {
+  if (selectedMenuOption === 1)
+    for (let i = 1; i < 4; i++) {
+      outlineSVGs[i].style.visibility = '';
+      solidSVGs[i].style.display = 'none';
+    }
+  else if (selectedMenuOption === 2)
+    for (let i = 4; i < 7; i++) {
+      outlineSVGs[i].style.visibility = '';
+      solidSVGs[i].style.display = 'none';
+    }
+
+  if (selectedMenuOption === 0) {
+    if (playerNameInputElement.value !== '') {
+      outlineSVGs[0].style.visibility = 'hidden';
+      solidSVGs[0].style.display = 'inline';
+    }
+  } else
+    for (let i = 1; i < outlineSVGs.length; i++)
+      if (selectedOptionChoice + 1 === i) {
+        outlineSVGs[i].style.visibility = 'hidden';
+        solidSVGs[i].style.display = 'inline';
+        break;
+      }
+}
+
 function inputFieldSVGToggler() {
   if (playerNameInputElement.value.length > 0)
     inputFieldSVG.style.visibility = 'visible';
-  else inputFieldSVG.style.visibility = 'hidden';
+  else {
+    inputFieldSVG.style.visibility = 'hidden';
+    solidSVGs[0].style.display = 'none';
+  }
 }
 
 function toggleMenuSelection(eventKey) {
@@ -66,6 +95,7 @@ function keyboardNavigationHandler(event) {
     }
   } else if (event.key === 'Enter') {
     if (selectedMenuOption < 3) {
+      SVGChanger();
       toggleMenuSelection(event.key);
       toggleOptionChoiceSelection(event.key);
     } else if (selectedMenuOption === 3) {

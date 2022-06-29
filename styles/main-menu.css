@@ -1,39 +1,45 @@
+html {
+  --color-blue-selection: blue;
+  --color-blue-hover: rgb(37, 68, 172);
+}
+
 .menu-option:hover p {
   font-size: 1.7rem;
-  color: rgb(37, 68, 172);
+  color: var(--color-blue-hover);
 }
 
 .menu-option li:hover .option-choice-btn,
 .menu-option:hover #player-name {
   font-size: 1.5rem;
-  color: rgb(37, 68, 172);
+  color: var(--color-blue-hover);
 }
 
 .menu-option.selected p {
   font-size: 1.7rem;
-  color: blue;
+  color: var(--color-blue-selection);
 }
 
 .menu-option li .option-choice-btn.selected,
 .menu-option.selected #player-name {
   font-size: 1.5rem;
-  color: blue;
-  caret-color: blue;
+  color: var(--color-blue-selection);
+  caret-color: var(--color-blue-selection);
 }
 
 /* For check-circle icon */
+
 .check-circle-outline {
   visibility: hidden;
-  color: rgb(37, 68, 172);
+  color: var(--color-blue-hover);
 }
 
 .menu-option li:hover .check-circle-outline {
   visibility: visible;
 }
 
-.option-choice-btn.selected + .check-circle-outline {
+.option-choice-btn.selected ~ .check-circle-outline {
   visibility: visible;
-  color: blue;
+  color: var(--color-blue-selection);
 }
 
 #input-field-svg {
@@ -43,9 +49,13 @@
 }
 
 .menu-option:hover #input-field-svg {
-  color: rgb(37, 68, 172);
+  color: var(--color-blue-hover);
 }
 
 .menu-option.selected #input-field-svg {
-  color: blue;
+  color: var(--color-blue-selection);
+}
+
+.check-circle-solid {
+  display: none;
 }
