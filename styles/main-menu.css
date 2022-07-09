@@ -3,12 +3,24 @@ html {
   --color-blue-hover: rgb(37, 68, 172);
 }
 
+.menu-option {
+  pointer-events: none;
+}
+
+.option-choice-btn,
+#start-game-btn,
+.menu-option label,
+.menu-option #player-name {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 .menu-option:hover p {
   font-size: 1.7rem;
   color: var(--color-blue-hover);
 }
 
-.menu-option li:hover .option-choice-btn,
+.option-choice-btn:hover,
 .menu-option:hover #player-name {
   font-size: 1.5rem;
   color: var(--color-blue-hover);
@@ -19,7 +31,7 @@ html {
   color: var(--color-blue-selection);
 }
 
-.menu-option li .option-choice-btn.selected,
+.option-choice-btn.selected,
 .menu-option.selected #player-name {
   font-size: 1.5rem;
   color: var(--color-blue-selection);
@@ -28,34 +40,39 @@ html {
 
 /* For check-circle icon */
 
+.check-circle-solid,
 .check-circle-outline {
-  visibility: hidden;
-  color: var(--color-blue-hover);
+  display: none;
+  position: relative;
+  top: 2.5px;
 }
 
-.menu-option li:hover .check-circle-outline {
-  visibility: visible;
+.option-choice-btn:hover ~ .check-circle-outline {
+  display: inline;
+  color: var(--color-blue-hover);
 }
 
 .option-choice-btn.selected ~ .check-circle-outline {
-  visibility: visible;
+  display: inline;
   color: var(--color-blue-selection);
 }
 
-#input-field-svg {
-  position: relative;
-  top: 1.5px;
-  visibility: hidden;
+.option-choice-btn:hover,
+.option-choice-btn.selected,
+.option-choice-btn.checked,
+.menu-option.checked #player-name {
+  margin-right: 2px;
+  margin-left: 26.4px;
 }
 
-.menu-option:hover #input-field-svg {
+.input-field-svg {
+  top: 1.5px;
+}
+
+.menu-option:hover .input-field-svg.h-6.w-6 {
   color: var(--color-blue-hover);
 }
 
-.menu-option.selected #input-field-svg {
+.menu-option.selected .input-field-svg.h-6.w-6 {
   color: var(--color-blue-selection);
-}
-
-.check-circle-solid {
-  display: none;
 }

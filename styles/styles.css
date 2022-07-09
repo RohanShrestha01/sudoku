@@ -12,6 +12,7 @@ body {
   align-items: center;
   color: #2e2e2e;
   background-color: #f1f2f2;
+  cursor: default;
 }
 
 li {
@@ -46,18 +47,9 @@ main {
   padding-top: 0.875rem;
 }
 
-.menu-option li {
-  padding-top: 0.625rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .menu-option p {
   font-family: 'Texturina', serif;
   font-size: 1.5rem;
-  cursor: pointer;
 }
 
 #player-name {
@@ -66,11 +58,11 @@ main {
   font-weight: 500;
   text-align: center;
   margin-top: 0.625rem;
-  margin-left: 25px;
   caret-color: #2e2e2e;
 }
 
-#player-name:focus-visible {
+#player-name:focus-visible,
+.option-choice-btn:focus-visible {
   outline: 0;
 }
 
@@ -80,10 +72,9 @@ main {
   border: 0;
   background-color: inherit;
   color: inherit;
-  cursor: pointer;
 }
 
 .option-choice-btn {
   font-size: 1.3rem;
-  margin: 0 5px 0 25px;
+  padding-top: 0.625rem;
 }
