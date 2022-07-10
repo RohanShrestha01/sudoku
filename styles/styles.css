@@ -13,6 +13,7 @@ body {
   color: #2e2e2e;
   background-color: #f1f2f2;
   cursor: default;
+  user-select: none;
 }
 
 li {
@@ -61,8 +62,7 @@ main {
   caret-color: #2e2e2e;
 }
 
-#player-name:focus-visible,
-.option-choice-btn:focus-visible {
+#player-name:focus-visible {
   outline: 0;
 }
 
@@ -77,4 +77,10 @@ main {
 .option-choice-btn {
   font-size: 1.3rem;
   padding-top: 0.625rem;
+}
+
+#note {
+  font-size: 0.75rem;
+  margin-top: 0.625rem;
+  text-align: center;
 }

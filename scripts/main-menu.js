@@ -80,7 +80,8 @@ function startGame() {
     mainMenuElement.style.display = 'none';
   } else {
     optionsChecked = 0;
-    alert('Please fill and choose all the options.');
+    noteElement.textContent = 'Please fill and choose all the options!';
+    noteElement.style.color = 'rgb(228, 18, 18)';
   }
 }
 
