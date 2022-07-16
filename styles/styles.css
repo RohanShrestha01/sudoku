@@ -20,18 +20,15 @@ li {
   list-style: none;
 }
 
-main {
+#main-menu-section {
+  padding: 2.5rem 0;
+  height: 37.7rem;
   width: 31rem;
   display: flex;
   justify-content: center;
   border-radius: 80px;
   background-color: #ffffff;
-  box-shadow: 0 2px 5px 1px rgba(64, 60, 67, 0.16);
-}
-
-#main-menu {
-  padding: 2.5rem 0;
-  height: 37.7rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 #main-menu h1 {

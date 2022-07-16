@@ -1,0 +1,110 @@
+#game-section {
+  display: none;
+}
+
+#game-section h2 {
+  text-align: center;
+  font-family: 'Texturina', serif;
+  font-size: 1.7rem;
+}
+
+#middle {
+  display: flex;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+aside button {
+  font-family: inherit;
+  color: #2e2e2e;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: 1px solid white;
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+aside button:focus {
+  outline: 0;
+}
+
+aside button:hover {
+  background-color: #f1f2f2;
+  border-color: #2e2e2e;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  margin: 2.5rem 4rem;
+}
+
+.box {
+  display: grid;
+  grid-template: repeat(3, 3.125rem) / repeat(3, 3.125rem);
+}
+
+.inputBox {
+  text-align: center;
+  font-family: inherit;
+  font-size: 1.6rem;
+  color: #2e2e2e;
+  cursor: pointer;
+  border: 1px solid white;
+  caret-color: transparent;
+  user-select: none;
+}
+
+.inputBox:hover {
+  border-color: #2e2e2e;
+  background-color: #f1f2f2;
+}
+
+.inputBox:focus {
+  outline: 0;
+}
+
+.highlightRow {
+  border-color: #2e2e2e white;
+}
+
+.highlightCol {
+  border-color: white #2e2e2e;
+}
+
+.highlightBox {
+  border-color: #2e2e2e;
+  background-color: #f1f2f2;
+}
+
+.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+#svg-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#timer {
+  font-family: 'Texturina', serif;
+  font-size: 1.2rem;
+  width: 53px;
+}
+
+#time-section {
+  display: flex;
+  align-items: center;
+}

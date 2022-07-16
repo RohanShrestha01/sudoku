@@ -1,6 +1,7 @@
 let selectedMenuOption = 0;
 let selectedOptionChoice = 0;
 let optionsChecked = 0;
+let difficulty, mode;
 
 function resetSVG(i) {
   outlineSVGs[i].style.display = '';
@@ -28,6 +29,9 @@ function SVGChanger() {
     for (let i = 1; i < outlineSVGs.length; i++)
       if (selectedOptionChoice + 1 === i) {
         showSolidSVG(i);
+        const text_content = optionChoiceBtns[i - 1].textContent;
+        if (i < 4) difficulty = text_content;
+        else mode = text_content;
         break;
       }
   }
@@ -77,7 +81,8 @@ function startGame() {
 
   if (playerNameInputElement.value !== '' && optionsChecked === 2) {
     document.removeEventListener('keydown', keyboardNavigationHandler);
-    mainMenuElement.style.display = 'none';
+    mainMenuSectionElement.style.display = 'none';
+    createBoard();
   } else {
     optionsChecked = 0;
     noteElement.textContent = 'Please fill and choose all the options!';
