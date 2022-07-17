@@ -41,6 +41,11 @@ li {
   text-align: center;
 }
 
+#main-menu svg {
+  height: 20px;
+  width: 20px;
+}
+
 .menu-option {
   padding-top: 0.875rem;
 }

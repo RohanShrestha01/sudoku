@@ -11,6 +11,7 @@ const inputBoxElements = document.getElementsByClassName('inputBox');
 const gameSectionElement = document.getElementById('game-section');
 const numberButtonElements = document.querySelectorAll('aside button');
 const timerElement = document.getElementById('timer');
+const timerSVG = document.querySelector('#time-section svg');
 
 document.addEventListener('keydown', keyboardNavigationHandler);
 playerNameInputElement.addEventListener('input', inputFieldSVGToggler);
@@ -28,3 +29,12 @@ startGameBtn.addEventListener('mousedown', event => event.preventDefault());
 
 for (const numberButtonElement of numberButtonElements)
   numberButtonElement.addEventListener('click', numberButtonClickHandler);
+
+timerSVG.addEventListener(
+  'mouseenter',
+  () => (timerSVG.firstElementChild.href.baseVal = '#playSVG')
+);
+timerSVG.addEventListener(
+  'mouseleave',
+  () => (timerSVG.firstElementChild.href.baseVal = '#pauseSVG')
+);

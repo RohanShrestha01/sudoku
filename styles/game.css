@@ -37,8 +37,10 @@ aside button:focus {
 }
 
 aside button:hover {
-  background-color: #f1f2f2;
+  background-color: #2e2e2e;
   border-color: #2e2e2e;
+  color: white;
+  fill: white;
 }
 
 #game-board {
@@ -66,8 +68,9 @@ aside button:hover {
 }
 
 .inputBox:hover {
+  background-color: #2e2e2e;
   border-color: #2e2e2e;
-  background-color: #f1f2f2;
+  color: white;
 }
 
 .inputBox:focus {
@@ -84,7 +87,8 @@ aside button:hover {
 
 .highlightBox {
   border-color: #2e2e2e;
-  background-color: #f1f2f2;
+  background-color: #2e2e2e;
+  color: white;
 }
 
 .disabled {
@@ -98,13 +102,22 @@ aside button:hover {
   justify-content: center;
 }
 
-#timer {
-  font-family: 'Texturina', serif;
-  font-size: 1.2rem;
-  width: 53px;
+#boardFooter {
+  display: flex;
 }
 
 #time-section {
   display: flex;
   align-items: center;
+}
+
+#timer {
+  font-family: 'Texturina', serif;
+  font-size: 1.2rem;
+  width: 52px;
+  height: 38px;
+}
+
+#time-section svg {
+  cursor: pointer;
 }
