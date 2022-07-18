@@ -4,19 +4,14 @@ let optionsChecked = 0;
 let difficulty, mode;
 
 function resetSVG(i) {
-  outlineSVGs[i].style.display = '';
-  solidSVGs[i].style.display = 'none';
-  if (i === 0) {
-    playerNameInputElement.value = '';
-    menuOptionElements[0].classList.remove('checked');
-  } else optionChoiceBtns[i - 1].classList.remove('checked');
+  checkCircleSVGs[i].style.visibility = '';
+  checkCircleSVGs[i].firstElementChild.href.baseVal = '#checkOutline';
+  if (i === 0) playerNameInputElement.value = '';
 }
 
 function showSolidSVG(i) {
-  outlineSVGs[i].style.display = 'none';
-  solidSVGs[i].style.display = 'inline';
-  if (i === 0) menuOptionElements[0].classList.add('checked');
-  else optionChoiceBtns[i - 1].classList.add('checked');
+  checkCircleSVGs[i].firstElementChild.href.baseVal = '#checkSolid';
+  checkCircleSVGs[i].style.visibility = 'visible';
 }
 
 function SVGChanger() {
@@ -26,22 +21,28 @@ function SVGChanger() {
   if (selectedMenuOption !== 0) {
     if (playerNameInputElement.value !== '') showSolidSVG(0);
 
-    for (let i = 1; i < outlineSVGs.length; i++)
-      if (selectedOptionChoice + 1 === i) {
-        showSolidSVG(i);
-        const text_content = optionChoiceBtns[i - 1].textContent;
-        if (i < 4) difficulty = text_content;
-        else mode = text_content;
-        break;
-      }
+    if (selectedMenuOption !== 3)
+      for (let i = 1; i < checkCircleSVGs.length; i++)
+        if (selectedOptionChoice + 1 === i) {
+          showSolidSVG(i);
+          const text_content = optionChoiceBtns[i - 1].textContent;
+          if (i < 4) difficulty = text_content;
+          else mode = text_content;
+          break;
+        }
   }
 }
 
 function inputFieldSVGToggler() {
   if (playerNameInputElement.value.length > 0) {
-    outlineSVGs[0].style.display = 'inline';
-    menuOptionElements[0].classList.add('checked');
+    checkCircleSVGs[0].firstElementChild.href.baseVal = '#checkOutline';
+    checkCircleSVGs[0].style.visibility = 'visible';
   } else resetSVG(0);
+}
+
+function inputFieldFocusHandler() {
+  if (selectedMenuOption === 0) playerNameInputElement.focus();
+  else playerNameInputElement.blur();
 }
 
 function toggleMenuSelection(eventKey) {
@@ -76,10 +77,11 @@ function toggleOptionChoiceSelection(eventKey) {
 }
 
 function startGame() {
-  for (let i = 0; i < optionChoiceBtns.length; i++)
-    if (optionChoiceBtns[i].classList.contains('checked')) optionsChecked++;
-
-  if (playerNameInputElement.value !== '' && optionsChecked === 2) {
+  for (let i = 0; i < checkCircleSVGs.length; i++)
+    if (checkCircleSVGs[i].firstElementChild.href.baseVal === '#checkSolid')
+      optionsChecked++;
+  console.log(optionsChecked);
+  if (optionsChecked === 3) {
     document.removeEventListener('keydown', keyboardNavigationHandler);
     mainMenuSectionElement.style.display = 'none';
     createBoard();
@@ -118,17 +120,20 @@ function keyboardNavigationHandler(event) {
 
   // For Space Key (To not allow spaces in the player name)
   else if (event.key === ' ') event.preventDefault();
-
-  if (selectedMenuOption === 0) playerNameInputElement.focus();
-  else playerNameInputElement.blur();
+  inputFieldFocusHandler();
 }
 
 function clickHandler(event) {
   const classList = event.target.classList;
+  if (selectedMenuOption === 3 && classList.contains('m-3')) {
+    startGame();
+    return;
+  }
   menuOptionElements[selectedMenuOption].classList.remove('selected');
   optionChoiceBtns[selectedOptionChoice].classList.remove('selected');
   if (classList.contains('m-1')) selectedMenuOption = 1;
   else if (classList.contains('m-2')) selectedMenuOption = 2;
+  else if (classList.contains('m-3')) selectedMenuOption = 3;
   else {
     selectedMenuOption = 0;
     selectedOptionChoice = 0;
@@ -145,4 +150,5 @@ function clickHandler(event) {
 
   if (selectedMenuOption === 0) resetSVG(0);
   SVGChanger();
+  inputFieldFocusHandler();
 }

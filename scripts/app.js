@@ -1,8 +1,7 @@
 const playerNameInputElement = document.getElementById('player-name');
 const menuOptionElements = document.querySelectorAll('.menu-option');
 const optionChoiceBtns = document.querySelectorAll('.option-choice-btn');
-const outlineSVGs = document.getElementsByClassName('check-circle-outline');
-const solidSVGs = document.getElementsByClassName('check-circle-solid');
+const checkCircleSVGs = document.getElementsByClassName('check-circle-svg');
 const startGameBtn = document.getElementById('start-game-btn');
 const mainMenuSectionElement = document.getElementById('main-menu-section');
 const noteElement = document.getElementById('note');
@@ -24,7 +23,7 @@ for (const optionChoiceBtn of optionChoiceBtns) {
 }
 
 menuOptionElements[0].addEventListener('click', clickHandler);
-startGameBtn.addEventListener('click', startGame);
+startGameBtn.addEventListener('click', clickHandler);
 startGameBtn.addEventListener('mousedown', event => event.preventDefault());
 
 for (const numberButtonElement of numberButtonElements)

@@ -40,27 +40,24 @@ html {
 
 /* For check-circle icon */
 
-.check-circle-solid,
-.check-circle-outline {
-  display: none;
+.check-circle-svg {
+  visibility: hidden;
   position: relative;
   top: 2.5px;
 }
 
-.option-choice-btn:hover ~ .check-circle-outline {
-  display: inline;
+.option-choice-btn:hover ~ .check-circle-svg {
+  visibility: visible;
   color: var(--color-blue-hover);
 }
 
-.option-choice-btn.selected ~ .check-circle-outline {
-  display: inline;
+.option-choice-btn.selected ~ .check-circle-svg {
+  visibility: visible;
   color: var(--color-blue-selection);
 }
 
-.option-choice-btn:hover,
-.option-choice-btn.selected,
-.option-choice-btn.checked,
-.menu-option.checked #player-name {
+.option-choice-btn,
+.menu-option #player-name {
   margin-right: 2px;
   margin-left: 26.4px;
 }
@@ -69,10 +66,10 @@ html {
   top: 1.5px;
 }
 
-.menu-option:hover .input-field-svg.h-6.w-6 {
+.menu-option:hover .input-field-svg {
   color: var(--color-blue-hover);
 }
 
-.menu-option.selected .input-field-svg.h-6.w-6 {
+.menu-option.selected .input-field-svg {
   color: var(--color-blue-selection);
 }
