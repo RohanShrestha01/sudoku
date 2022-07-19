@@ -80,7 +80,7 @@ function startGame() {
   for (let i = 0; i < checkCircleSVGs.length; i++)
     if (checkCircleSVGs[i].firstElementChild.href.baseVal === '#checkSolid')
       optionsChecked++;
-  console.log(optionsChecked);
+
   if (optionsChecked === 3) {
     document.removeEventListener('keydown', keyboardNavigationHandler);
     mainMenuSectionElement.style.display = 'none';
@@ -97,7 +97,9 @@ function keyboardNavigationHandler(event) {
 
   // For Arrow Up and Arrow Down Keys
   if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-    const bool1 = [0, 3, 7].includes(optionSumIndex); // optionSumIndex === 0 || optionSumIndex === 3 || optionSumIndex === 7
+    // optionSumIndex === 0 || optionSumIndex === 3 || optionSumIndex === 7
+    const bool1 =
+      [0, 3, 7].includes(optionSumIndex) && selectedMenuOption !== 3;
     const bool2 = [1, 5].includes(optionSumIndex) || selectedMenuOption === 3;
     if (
       (event.key === 'ArrowDown' && bool1) ||

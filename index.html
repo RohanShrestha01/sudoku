@@ -126,9 +126,17 @@
         </aside>
       </div>
       <footer id="boardFooter">
+        <button id="resetBoard" class="footerBtn">
+          Reset
+          <svg height="20px" width="20px"><use href="#resetSVG"></use></svg>
+        </button>
+        <button id="showSoln" class="footerBtn">
+          Show Solution
+          <svg height="20px" width="20px"><use href="#eyeOutline"></use></svg>
+        </button>
         <div id="time-section">
           <span id="timer">00:00</span>
-          <svg height="24px" width="24px"><use href="#pauseSVG"></use></svg>
+          <svg height="24px" width="24px"><use href="#pauseOutline"></use></svg>
         </div>
       </footer>
     </section>
@@ -138,8 +146,10 @@
       <symbol viewBox="0 0 20 20" fill="currentColor" id="checkSolid"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></symbol>
       <symbol fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" id="checkOutline"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></symbol>
       <symbol viewBox="0 0 30 31" id="eraseSVG"><path d="M27.13 25.11a1 1 0 01.12 2h-6.9a1 1 0 01-.11-2H27.13zM21.48 4.08l.17.14.16.15 3.76 3.76a4 4 0 01.15 5.5l-.15.16-11.32 11.32h2.04a1 1 0 011 .89v.11a1 1 0 01-.88 1H6.52a3 3 0 01-1.98-.74l-.14-.14-2.23-2.22a4 4 0 01-.15-5.5l.15-.16L16.15 4.37a4 4 0 015.33-.29zm-11.52 9.3l-6.38 6.38a2 2 0 00-.11 2.7l.11.13 2.23 2.23a1 1 0 00.58.28l.13.01h4.9l5.13-5.13-6.59-6.6zm7.87-7.82l-.14.1-.13.13-6.18 6.18 6.59 6.6 6.19-6.2a2 2 0 00.11-2.7l-.11-.12-3.77-3.76a2 2 0 00-2.56-.22z"></path></symbol>
-      <symbol fill="#ffffff" stroke="#2e2e2e" viewBox="0 0 24 24" id="pauseSVG"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></symbol>
-      <symbol fill="#2e2e2e" viewBox="0 0 20 20" id="playSVG"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></symbol>
+      <symbol fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" id="eyeOutline"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></symbol>
+      <symbol viewBox="0 0 30 31" id="resetSVG"><path d="M13.71 2.46a1 1 0 01.14 1.32l-.08.1-2.15 2.32 3.41.02a10 10 0 11-10 10 1 1 0 112 0 8 8 0 108.25-8h-.25l-3.48-.02 2.28 2.53a1 1 0 01.01 1.32l-.09.1a1 1 0 01-1.32 0l-.09-.08-3.76-4.18a1 1 0 01-.07-1.25l.08-.1 3.7-4.02a1 1 0 011.42-.06z"></path></symbol>
+      <symbol fill="#ffffff" stroke="#2e2e2e" viewBox="0 0 24 24" id="pauseOutline"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></symbol>
+      <symbol fill="#2e2e2e" viewBox="0 0 20 20" id="pauseSolid"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></symbol>
     </svg>
   </body>
 </html>

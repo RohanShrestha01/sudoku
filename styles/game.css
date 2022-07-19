@@ -48,7 +48,7 @@ aside button:hover {
   grid-template-columns: repeat(3, auto);
   gap: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 2.5rem 4rem;
+  margin: 2.5rem 4rem 2rem 4rem;
 }
 
 .box {
@@ -94,9 +94,12 @@ aside button:hover {
 .disabled {
   cursor: default;
   pointer-events: none;
+  color: #0072e3;
 }
 
-#svg-button {
+#svg-button,
+#time-section,
+.footerBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,11 +107,33 @@ aside button:hover {
 
 #boardFooter {
   display: flex;
+  justify-content: space-evenly;
 }
 
-#time-section {
-  display: flex;
-  align-items: center;
+.footerBtn {
+  font-family: 'Texturina', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2e2e2e;
+  border: 1px solid white;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 20px 5px 20px;
+}
+
+.footerBtn:hover {
+  background-color: #2e2e2e;
+  color: white;
+  border-color: #2e2e2e;
+  fill: white;
+  stroke: white;
+}
+
+.footerBtn svg {
+  margin: 5px 0 0 6px;
 }
 
 #timer {
@@ -120,4 +145,9 @@ aside button:hover {
 
 #time-section svg {
   cursor: pointer;
+}
+
+.incorrect,
+.incorrect:hover {
+  color: #e41212;
 }

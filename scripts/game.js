@@ -1,14 +1,73 @@
-let solution;
+let solution, puzzle;
 let selectedInputBoxId;
+let userInput = [];
+let seconds = 0;
+
+function incorrectNumChecker(arr) {
+  for (el of arr) el.classList.remove('incorrect');
+
+  for (let i = 0; i < 9; i++)
+    for (let j = i + 1; j < 9; j++)
+      if (arr[i].value === arr[j].value && arr[i].value != '') {
+        arr[i].classList.add('incorrect');
+        arr[j].classList.add('incorrect');
+      }
+}
+
+function checkForIncorrectNum() {
+  const selectedInputBox = document.getElementById(selectedInputBoxId);
+  const row = selectedInputBox.dataset.row;
+  const col = selectedInputBox.dataset.col;
+
+  const rowElements = document.getElementsByClassName(`row-${row}`);
+  const colElements = document.getElementsByClassName(`col-${col}`);
+  const boxElements = selectedInputBox.parentElement.children;
+
+  incorrectNumChecker(rowElements);
+  incorrectNumChecker(colElements);
+  incorrectNumChecker(boxElements);
+}
+
+function showSoln() {
+  removeSelection();
+  fillBoardData(solution);
+}
+
+function resetBoard() {
+  for (const inputBoxElement of inputBoxElements)
+    inputBoxElement.classList.remove(
+      'highlightBox',
+      'highlightRow',
+      'highlightCol',
+      'disabled'
+    );
+  fillBoardData(puzzle);
+  seconds = 0;
+}
+
+function checkForWin() {
+  for (let i = 0; i < 81; i++) if (userInput[i] !== solution[i]) return;
+  console.log('YOU WON HURRAY!👍');
+}
 
 function inputValueChecker(event) {
   const validInput = [1, 2, 3, 4, 5, 6, 7, 8, 9].includes(+event.key);
   const disabled = event.target.classList.contains('disabled');
+  const inputBoxNum = event.target.id.slice(9);
 
   if (disabled || !validInput) event.preventDefault();
-  else event.target.value = event.key;
+  else {
+    event.target.value = event.key;
+    userInput[inputBoxNum - 1] = event.key;
+  }
 
-  if (event.key === 'Backspace') event.target.value = '';
+  if (event.key === 'Backspace') {
+    event.target.value = '';
+    userInput[inputBoxNum - 1] = '';
+  }
+
+  checkForIncorrectNum();
+  checkForWin();
 }
 
 function removeSelection() {
@@ -38,9 +97,13 @@ function fillBoardData(sudokuPuzzle) {
     if (num !== '.') {
       inputBox.value = num;
       inputBox.classList.add('disabled');
-    } else inputBox.addEventListener('click', inputBoxSelectionHandler);
-
-    inputBox.addEventListener('keydown', inputValueChecker);
+      userInput[i - 1] = num;
+    } else {
+      inputBox.value = '';
+      inputBox.addEventListener('click', inputBoxSelectionHandler);
+      inputBox.addEventListener('keydown', inputValueChecker);
+      userInput[i - 1] = '';
+    }
   }
 }
 
@@ -63,7 +126,8 @@ function getBoardData() {
   )
     .then(response => response.json())
     .then(data => {
-      fillBoardData(data.response['unsolved-sudoku']);
+      puzzle = data.response['unsolved-sudoku'];
+      fillBoardData(puzzle);
       solution = data.response.solution;
     })
     .catch(err => console.error(err));
@@ -109,7 +173,6 @@ function createBoard() {
   gameSectionElement.style.display = 'block';
 
   // To increase the timer every second
-  let seconds = 0;
   setInterval(() => {
     seconds++;
     let second = seconds % 60;
@@ -122,7 +185,16 @@ function createBoard() {
 
 function numberButtonClickHandler(event) {
   const selectedInputBox = document.getElementById(selectedInputBoxId);
-  if (selectedInputBox) selectedInputBox.value = event.target.textContent;
+
+  if (selectedInputBox) {
+    const disabled = selectedInputBox.classList.contains('disabled');
+    if (!disabled) {
+      selectedInputBox.value = event.target.textContent;
+      userInput[selectedInputBoxId.slice(9) - 1] = event.target.textContent;
+    }
+  }
+  checkForIncorrectNum();
+  checkForWin();
 }
 
 // To focus the selected input box always
