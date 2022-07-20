@@ -1,0 +1,52 @@
+#backdrop {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  width: 25%;
+  padding: 2.5rem 0rem;
+  border-radius: 15px;
+}
+
+.modal h2 {
+  font-family: 'IM Fell French Canon SC', serif;
+  font-size: 2.5rem;
+  color: white;
+  background-color: #2e2e2e;
+  padding: 10px 30px;
+  border-radius: 15px;
+}
+
+fieldset {
+  border: 0;
+}
+
+legend {
+  margin: auto;
+}
+
+#iconsContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#iconsContainer svg {
+  cursor: pointer;
+  fill: #2e2e2e;
+  height: 40px;
+  width: 40px;
+}
+
+#iconsContainer svg:hover {
+  fill: black;
+}

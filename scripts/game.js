@@ -1,7 +1,100 @@
 let solution, puzzle;
 let selectedInputBoxId;
 let userInput = [];
-let seconds = 0;
+let seconds = 0,
+  numOfHints;
+let counter = null,
+  inputFocuser = null;
+let showSolution = false;
+
+function gameOver() {
+  clearInterval(counter);
+  clearInterval(inputFocuser);
+  console.log('Game Over😭');
+}
+
+function setHintsNum() {
+  if (difficulty === 1) numOfHints = 2;
+  else if (difficulty === 2) numOfHints = 3;
+  else numOfHints = 4;
+  hintNumElement.textContent = numOfHints;
+}
+
+function showHint() {
+  const selectedInputBox = document.getElementById(selectedInputBoxId);
+  if (selectedInputBox && numOfHints > 0 && !showSolution) {
+    const inputBoxNum = selectedInputBoxId.slice(9);
+    selectedInputBox.value = solution[inputBoxNum - 1];
+    selectedInputBox.classList.add('disabled');
+    numOfHints--;
+    hintNumElement.textContent = numOfHints;
+  }
+}
+
+// To increase the timer every second
+function startCounting() {
+  counter = setInterval(() => {
+    if (mode === 'Countdown') seconds--;
+    else seconds++;
+
+    let second = seconds % 60;
+    let minute = Math.floor(seconds / 60);
+    if (minute < 10) minute = '0' + minute;
+    if (second < 10) second = '0' + second;
+    timerElement.textContent = `${minute}:${second}`;
+
+    if (mode === 'Countdown' && seconds === 0) gameOver();
+  }, 1000);
+}
+
+function setTimer() {
+  if (mode === 'Countdown') {
+    if (difficulty === 1) {
+      timerElement.textContent = '10:00';
+      seconds = 600;
+    } else if (difficulty === 2) {
+      timerElement.textContent = '15:00';
+      seconds = 900;
+    } else {
+      timerElement.textContent = '20:00';
+      seconds = 1200;
+    }
+  } else seconds = 0;
+}
+
+// To focus the selected input box always
+function setFocusOnInputBox() {
+  inputFocuser = setInterval(() => {
+    const selectedInputBox = document.getElementById(selectedInputBoxId);
+    if (selectedInputBox) selectedInputBox.focus();
+  });
+}
+
+setFocusOnInputBox();
+
+function pauseGame() {
+  clearInterval(counter);
+  clearInterval(inputFocuser);
+
+  for (const inputBoxEl of inputBoxElements)
+    inputBoxEl.setAttribute('type', 'hidden');
+
+  backdropElement.style.display = 'block';
+  pauseSectionElement.style.display = 'block';
+}
+
+function resumeGame() {
+  backdropElement.style.display = 'none';
+  pauseSectionElement.style.display = 'none';
+
+  for (const inputBoxEl of inputBoxElements)
+    inputBoxEl.setAttribute('type', 'text');
+
+  if (!showSolution) {
+    startCounting();
+    setFocusOnInputBox();
+  }
+}
 
 function incorrectNumChecker(arr) {
   for (el of arr) el.classList.remove('incorrect');
@@ -29,8 +122,13 @@ function checkForIncorrectNum() {
 }
 
 function showSoln() {
-  removeSelection();
+  clearInterval(counter);
+  for (const inputBoxElement of inputBoxElements)
+    // prettier-ignore
+    inputBoxElement.classList.remove('highlightBox', 'highlightRow', 'highlightCol','incorrect');
+
   fillBoardData(solution);
+  showSolution = true;
 }
 
 function resetBoard() {
@@ -39,15 +137,21 @@ function resetBoard() {
       'highlightBox',
       'highlightRow',
       'highlightCol',
-      'disabled'
+      'disabled',
+      'incorrect'
     );
   fillBoardData(puzzle);
-  seconds = 0;
+  if (showSolution) startCounting();
+  showSolution = false;
 }
 
 function checkForWin() {
   for (let i = 0; i < 81; i++) if (userInput[i] !== solution[i]) return;
-  console.log('YOU WON HURRAY!👍');
+  if (!showSolution) {
+    clearInterval(counter);
+    clearInterval(inputFocuser);
+    console.log('YOU WON HURRAY!👍');
+  }
 }
 
 function inputValueChecker(event) {
@@ -170,17 +274,14 @@ function createBoard() {
   document.getElementById('mode').textContent = mode;
 
   getBoardData();
-  gameSectionElement.style.display = 'block';
+  if (mode === 'Hints') {
+    hintButton.style.display = 'inline';
+    setHintsNum();
+  } else hintButton.style.display = 'none';
 
-  // To increase the timer every second
-  setInterval(() => {
-    seconds++;
-    let second = seconds % 60;
-    let minute = Math.floor(seconds / 60);
-    if (minute < 10) minute = '0' + minute;
-    if (second < 10) second = '0' + second;
-    timerElement.textContent = `${minute}:${second}`;
-  }, 1000);
+  setTimer();
+  startCounting();
+  gameSectionElement.style.display = 'block';
 }
 
 function numberButtonClickHandler(event) {
@@ -196,9 +297,3 @@ function numberButtonClickHandler(event) {
   checkForIncorrectNum();
   checkForWin();
 }
-
-// To focus the selected input box always
-setInterval(() => {
-  const selectedInputBox = document.getElementById(selectedInputBoxId);
-  if (selectedInputBox) selectedInputBox.focus();
-});

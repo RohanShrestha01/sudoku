@@ -13,6 +13,14 @@ const showSolnButton = document.getElementById('showSoln');
 const resetBoardButton = document.getElementById('resetBoard');
 const timerElement = document.getElementById('timer');
 const timerSVG = document.querySelector('#time-section svg');
+const hintButton = document.getElementById('hintBtn');
+const hintNumElement = document.getElementById('hintNum');
+
+const backdropElement = document.getElementById('backdrop');
+const pauseSectionElement = document.getElementById('pause-section');
+const resumeBtn = document.getElementById('resume');
+const restartBtn = document.getElementById('restart');
+const mainMenuBtn = document.getElementById('mainMenu');
 
 document.addEventListener('keydown', keyboardNavigationHandler);
 playerNameInputElement.addEventListener('input', inputFieldSVGToggler);
@@ -39,6 +47,10 @@ timerSVG.addEventListener(
   'mouseleave',
   () => (timerSVG.firstElementChild.href.baseVal = '#pauseOutline')
 );
+timerSVG.addEventListener('click', pauseGame);
 
 showSolnButton.addEventListener('click', showSoln);
 resetBoardButton.addEventListener('click', resetBoard);
+hintButton.addEventListener('click', showHint);
+
+resumeBtn.addEventListener('click', resumeGame);
