@@ -76,7 +76,7 @@ function toggleOptionChoiceSelection(eventKey) {
   }
 }
 
-function startGame() {
+function startGameChecker() {
   for (let i = 0; i < checkCircleSVGs.length; i++)
     if (checkCircleSVGs[i].firstElementChild.href.baseVal === '#checkSolid')
       optionsChecked++;
@@ -84,7 +84,7 @@ function startGame() {
   if (optionsChecked === 3) {
     document.removeEventListener('keydown', keyboardNavigationHandler);
     mainMenuSectionElement.style.display = 'none';
-    createBoard();
+    startGame();
   } else {
     optionsChecked = 0;
     noteElement.textContent = 'Please fill and choose all the options!';
@@ -117,7 +117,7 @@ function keyboardNavigationHandler(event) {
       SVGChanger();
       toggleMenuSelection(event.key);
       toggleOptionChoiceSelection(event.key);
-    } else if (selectedMenuOption === 3) startGame();
+    } else if (selectedMenuOption === 3) startGameChecker();
   }
 
   // For Space Key (To not allow spaces in the player name)
@@ -128,7 +128,7 @@ function keyboardNavigationHandler(event) {
 function clickHandler(event) {
   const classList = event.target.classList;
   if (selectedMenuOption === 3 && classList.contains('m-3')) {
-    startGame();
+    startGameChecker();
     return;
   }
   menuOptionElements[selectedMenuOption].classList.remove('selected');

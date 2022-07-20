@@ -22,6 +22,14 @@ const resumeBtn = document.getElementById('resume');
 const restartBtn = document.getElementById('restart');
 const mainMenuBtn = document.getElementById('mainMenu');
 
+const resultSection = document.getElementById('result-section');
+const result = document.querySelector('#result-section h2');
+const playerNameResultEl = document.getElementById('playerName');
+const difficultyResultEl = document.getElementById('difficultyResult');
+const modeResultEl = document.getElementById('modeResult');
+const timeResultEl = document.getElementById('time');
+const okBtn = document.getElementById('okButton');
+
 document.addEventListener('keydown', keyboardNavigationHandler);
 playerNameInputElement.addEventListener('input', inputFieldSVGToggler);
 
@@ -54,3 +62,7 @@ resetBoardButton.addEventListener('click', resetBoard);
 hintButton.addEventListener('click', showHint);
 
 resumeBtn.addEventListener('click', resumeGame);
+restartBtn.addEventListener('click', restartGame);
+mainMenuBtn.addEventListener('click', mainMenu);
+
+okBtn.addEventListener('click', mainMenu);

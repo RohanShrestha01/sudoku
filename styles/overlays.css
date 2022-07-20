@@ -13,7 +13,7 @@
   z-index: 2;
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  width: 25%;
+  width: 24rem;
   padding: 2.5rem 0rem;
   border-radius: 15px;
 }
@@ -49,4 +49,41 @@ legend {
 
 #iconsContainer svg:hover {
   fill: black;
+}
+
+#result-section {
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+#result-section ul {
+  font-family: 'Texturina', serif;
+  font-size: 1.3rem;
+  padding: 0 2.5rem;
+}
+
+#result-section li {
+  position: relative;
+  text-align: left;
+}
+
+#result-section span {
+  position: absolute;
+  right: 0;
+}
+
+#okButton {
+  font-family: 'Texturina', serif;
+  cursor: pointer;
+  background-color: #2e2e2e;
+  color: white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
+  /* padding: 5px 15px 8px 10px; */
+  padding: 5px 16px 9px 10px;
+  border-radius: 20px;
+  margin-top: 2.5rem;
+}
+
+#okButton:hover {
+  background-color: black;
 }

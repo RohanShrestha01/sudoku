@@ -6,30 +6,11 @@ let seconds = 0,
 let counter = null,
   inputFocuser = null;
 let showSolution = false;
+let restart = false;
 
-function gameOver() {
-  clearInterval(counter);
-  clearInterval(inputFocuser);
-  console.log('Game Over😭');
-}
-
-function setHintsNum() {
-  if (difficulty === 1) numOfHints = 2;
-  else if (difficulty === 2) numOfHints = 3;
-  else numOfHints = 4;
-  hintNumElement.textContent = numOfHints;
-}
-
-function showHint() {
-  const selectedInputBox = document.getElementById(selectedInputBoxId);
-  if (selectedInputBox && numOfHints > 0 && !showSolution) {
-    const inputBoxNum = selectedInputBoxId.slice(9);
-    selectedInputBox.value = solution[inputBoxNum - 1];
-    selectedInputBox.classList.add('disabled');
-    numOfHints--;
-    hintNumElement.textContent = numOfHints;
-  }
-}
+window.onbeforeunload = function () {
+  return 'Data will be lost if you leave the page, are you sure?';
+};
 
 // To increase the timer every second
 function startCounting() {
@@ -43,23 +24,8 @@ function startCounting() {
     if (second < 10) second = '0' + second;
     timerElement.textContent = `${minute}:${second}`;
 
-    if (mode === 'Countdown' && seconds === 0) gameOver();
+    if (mode === 'Countdown' && seconds === 0) showResult("Time's Up ⌛");
   }, 1000);
-}
-
-function setTimer() {
-  if (mode === 'Countdown') {
-    if (difficulty === 1) {
-      timerElement.textContent = '10:00';
-      seconds = 600;
-    } else if (difficulty === 2) {
-      timerElement.textContent = '15:00';
-      seconds = 900;
-    } else {
-      timerElement.textContent = '20:00';
-      seconds = 1200;
-    }
-  } else seconds = 0;
 }
 
 // To focus the selected input box always
@@ -70,30 +36,23 @@ function setFocusOnInputBox() {
   });
 }
 
-setFocusOnInputBox();
-
-function pauseGame() {
+function showResult(resultText) {
   clearInterval(counter);
   clearInterval(inputFocuser);
-
-  for (const inputBoxEl of inputBoxElements)
-    inputBoxEl.setAttribute('type', 'hidden');
-
+  result.textContent = resultText;
   backdropElement.style.display = 'block';
-  pauseSectionElement.style.display = 'block';
+  resultSection.style.display = 'block';
+
+  const name = playerNameInputElement.value;
+  playerNameResultEl.textContent = name;
+  difficultyResultEl.textContent = difficulty;
+  modeResultEl.textContent = mode;
+  timeResultEl.textContent = timerElement.textContent;
 }
 
-function resumeGame() {
-  backdropElement.style.display = 'none';
-  pauseSectionElement.style.display = 'none';
-
-  for (const inputBoxEl of inputBoxElements)
-    inputBoxEl.setAttribute('type', 'text');
-
-  if (!showSolution) {
-    startCounting();
-    setFocusOnInputBox();
-  }
+function checkForWin() {
+  for (let i = 0; i < 81; i++) if (userInput[i] !== solution[i]) return;
+  if (!showSolution) showResult('Completed 🎉');
 }
 
 function incorrectNumChecker(arr) {
@@ -121,37 +80,18 @@ function checkForIncorrectNum() {
   incorrectNumChecker(boxElements);
 }
 
-function showSoln() {
-  clearInterval(counter);
-  for (const inputBoxElement of inputBoxElements)
-    // prettier-ignore
-    inputBoxElement.classList.remove('highlightBox', 'highlightRow', 'highlightCol','incorrect');
+function numberButtonClickHandler(event) {
+  const selectedInputBox = document.getElementById(selectedInputBoxId);
 
-  fillBoardData(solution);
-  showSolution = true;
-}
-
-function resetBoard() {
-  for (const inputBoxElement of inputBoxElements)
-    inputBoxElement.classList.remove(
-      'highlightBox',
-      'highlightRow',
-      'highlightCol',
-      'disabled',
-      'incorrect'
-    );
-  fillBoardData(puzzle);
-  if (showSolution) startCounting();
-  showSolution = false;
-}
-
-function checkForWin() {
-  for (let i = 0; i < 81; i++) if (userInput[i] !== solution[i]) return;
-  if (!showSolution) {
-    clearInterval(counter);
-    clearInterval(inputFocuser);
-    console.log('YOU WON HURRAY!👍');
+  if (selectedInputBox) {
+    const disabled = selectedInputBox.classList.contains('disabled');
+    if (!disabled) {
+      selectedInputBox.value = event.target.textContent;
+      userInput[selectedInputBoxId.slice(9) - 1] = event.target.textContent;
+    }
+    checkForIncorrectNum();
   }
+  checkForWin();
 }
 
 function inputValueChecker(event) {
@@ -174,9 +114,97 @@ function inputValueChecker(event) {
   checkForWin();
 }
 
-function removeSelection() {
+function resetClassList() {
+  // prettier-ignore
   for (const inputBoxElement of inputBoxElements)
-    // prettier-ignore
+    inputBoxElement.classList.remove('highlightBox', 'highlightRow', 'highlightCol', 'disabled', 'incorrect');
+}
+
+function showSoln() {
+  clearInterval(counter);
+  resetClassList();
+  fillBoardData(solution);
+  showSolution = true;
+}
+
+function resetBoard() {
+  resetClassList();
+  fillBoardData(puzzle);
+  if (showSolution) startCounting();
+  showSolution = false;
+}
+
+function showHint() {
+  const selectedInputBox = document.getElementById(selectedInputBoxId);
+  if (selectedInputBox && numOfHints > 0 && !showSolution) {
+    const inputBoxNum = selectedInputBoxId.slice(9);
+    userInput[inputBoxNum - 1] = solution[inputBoxNum - 1];
+    selectedInputBox.value = solution[inputBoxNum - 1];
+    selectedInputBox.classList.add('disabled');
+    numOfHints--;
+    hintNumElement.textContent = numOfHints;
+    checkForIncorrectNum();
+    checkForWin();
+  }
+}
+
+function closePauseOverlay() {
+  backdropElement.style.display = 'none';
+  pauseSectionElement.style.display = 'none';
+
+  for (const inputBoxEl of inputBoxElements)
+    inputBoxEl.setAttribute('type', 'text');
+}
+
+function pauseGame() {
+  clearInterval(counter);
+  clearInterval(inputFocuser);
+
+  for (const inputBoxEl of inputBoxElements)
+    inputBoxEl.setAttribute('type', 'hidden');
+
+  backdropElement.style.display = 'block';
+  pauseSectionElement.style.display = 'block';
+}
+
+function resumeGame() {
+  closePauseOverlay();
+
+  if (!showSolution) {
+    startCounting();
+    setFocusOnInputBox();
+  }
+}
+
+function resetForRestart() {
+  restart = true;
+  selectedInputBoxId = null;
+  showSolution = false;
+  clearInterval(counter);
+  clearInterval(inputFocuser);
+  resetClassList();
+  closePauseOverlay();
+}
+
+function restartGame() {
+  resetForRestart();
+  startGame();
+}
+
+function mainMenu() {
+  resetForRestart();
+  resultSection.style.display = 'none';
+  document.addEventListener('keydown', keyboardNavigationHandler);
+  optionsChecked = 0;
+  noteElement.textContent = 'You can use Arrow Keys and Enter to Navigate';
+  noteElement.style.color = '';
+  gameSectionElement.style.display = 'none';
+  mainMenuSectionElement.style.display = 'flex';
+}
+
+function removeSelection() {
+  // prettier-ignore
+  for (const inputBoxElement of inputBoxElements)
     inputBoxElement.classList.remove('highlightBox', 'highlightRow', 'highlightCol');
 }
 
@@ -191,6 +219,28 @@ function inputBoxSelectionHandler(event) {
   event.target.classList.add('highlightBox');
   for (const rowEl of rowElements) rowEl.classList.add('highlightRow');
   for (const colEl of colElements) colEl.classList.add('highlightCol');
+}
+
+function setHintsNum() {
+  if (difficulty === 'Easy') numOfHints = 2;
+  else if (difficulty === 'Medium') numOfHints = 4;
+  else numOfHints = 6;
+  hintNumElement.textContent = numOfHints;
+}
+
+function setTimer() {
+  if (mode === 'Countdown') {
+    if (difficulty === 'Easy') {
+      timerElement.textContent = '10:00';
+      seconds = 600;
+    } else if (difficulty === 'Medium') {
+      timerElement.textContent = '15:00';
+      seconds = 900;
+    } else {
+      timerElement.textContent = '20:00';
+      seconds = 1200;
+    }
+  } else seconds = 0;
 }
 
 function fillBoardData(sudokuPuzzle) {
@@ -212,9 +262,10 @@ function fillBoardData(sudokuPuzzle) {
 }
 
 function getBoardData() {
-  if (difficulty === 'Easy') difficulty = 1;
-  else if (difficulty === 'Medium') difficulty = 2;
-  else difficulty = 3;
+  let difficultyLvl;
+  if (difficulty === 'Easy') difficultyLvl = 1;
+  else if (difficulty === 'Medium') difficultyLvl = 2;
+  else difficultyLvl = 3;
 
   const options = {
     method: 'GET',
@@ -225,7 +276,7 @@ function getBoardData() {
   };
 
   fetch(
-    `https://sudoku-board.p.rapidapi.com/new-board?diff=${difficulty}&stype=string&solu=true`,
+    `https://sudoku-board.p.rapidapi.com/new-board?diff=${difficultyLvl}&stype=string&solu=true`,
     options
   )
     .then(response => response.json())
@@ -269,6 +320,10 @@ function createBoard() {
       else count++;
     }
   }
+}
+
+function startGame() {
+  if (!restart) createBoard();
 
   document.getElementById('difficulty').textContent = difficulty;
   document.getElementById('mode').textContent = mode;
@@ -281,19 +336,6 @@ function createBoard() {
 
   setTimer();
   startCounting();
+  setFocusOnInputBox();
   gameSectionElement.style.display = 'block';
-}
-
-function numberButtonClickHandler(event) {
-  const selectedInputBox = document.getElementById(selectedInputBoxId);
-
-  if (selectedInputBox) {
-    const disabled = selectedInputBox.classList.contains('disabled');
-    if (!disabled) {
-      selectedInputBox.value = event.target.textContent;
-      userInput[selectedInputBoxId.slice(9) - 1] = event.target.textContent;
-    }
-  }
-  checkForIncorrectNum();
-  checkForWin();
 }
