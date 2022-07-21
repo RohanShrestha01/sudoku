@@ -1,3 +1,22 @@
+const DIFFICULTY_EASY = 'Easy';
+const DIFFICULTY_MEDIUM = 'Medium';
+const DIFFICULTY_HARD = 'Hard';
+
+const MODE_TIMER = 'Timer';
+const MODE_COUNTDOWN = 'Countdown';
+const MODE_HINTS = 'Hints';
+
+const TIME_EASY_SECONDS = 600;
+const TIME_EASY_TEXT = '10:00';
+const TIME_MEDIUM_SECONDS = 900;
+const TIME_MEDIUM_TEXT = '15:00';
+const TIME_HARD_SECONDS = 1200;
+const TIME_HARD_TEXT = '20:00';
+
+const HINTS_EASY = 2;
+const HINTS_MEDIUM = 4;
+const HINTS_HARD = 6;
+
 let solution, puzzle;
 let selectedInputBoxId;
 let userInput = [];
@@ -15,7 +34,7 @@ window.onbeforeunload = function () {
 // To increase the timer every second
 function startCounting() {
   counter = setInterval(() => {
-    if (mode === 'Countdown') seconds--;
+    if (mode === MODE_COUNTDOWN) seconds--;
     else seconds++;
 
     let second = seconds % 60;
@@ -24,7 +43,7 @@ function startCounting() {
     if (second < 10) second = '0' + second;
     timerElement.textContent = `${minute}:${second}`;
 
-    if (mode === 'Countdown' && seconds === 0) showResult("Time's Up ⌛");
+    if (mode === MODE_COUNTDOWN && seconds === 0) showResult("Time's Up ⌛");
   }, 1000);
 }
 
@@ -222,23 +241,23 @@ function inputBoxSelectionHandler(event) {
 }
 
 function setHintsNum() {
-  if (difficulty === 'Easy') numOfHints = 2;
-  else if (difficulty === 'Medium') numOfHints = 4;
-  else numOfHints = 6;
+  if (difficulty === DIFFICULTY_EASY) numOfHints = HINTS_EASY;
+  else if (difficulty === DIFFICULTY_MEDIUM) numOfHints = HINTS_MEDIUM;
+  else numOfHints = HINTS_HARD;
   hintNumElement.textContent = numOfHints;
 }
 
 function setTimer() {
-  if (mode === 'Countdown') {
-    if (difficulty === 'Easy') {
-      timerElement.textContent = '10:00';
-      seconds = 600;
-    } else if (difficulty === 'Medium') {
-      timerElement.textContent = '15:00';
-      seconds = 900;
+  if (mode === MODE_COUNTDOWN) {
+    if (difficulty === DIFFICULTY_EASY) {
+      timerElement.textContent = TIME_EASY_TEXT;
+      seconds = TIME_EASY_SECONDS;
+    } else if (difficulty === DIFFICULTY_MEDIUM) {
+      timerElement.textContent = TIME_MEDIUM_TEXT;
+      seconds = TIME_MEDIUM_SECONDS;
     } else {
-      timerElement.textContent = '20:00';
-      seconds = 1200;
+      timerElement.textContent = TIME_HARD_TEXT;
+      seconds = TIME_HARD_SECONDS;
     }
   } else seconds = 0;
 }
@@ -263,8 +282,8 @@ function fillBoardData(sudokuPuzzle) {
 
 function getBoardData() {
   let difficultyLvl;
-  if (difficulty === 'Easy') difficultyLvl = 1;
-  else if (difficulty === 'Medium') difficultyLvl = 2;
+  if (difficulty === DIFFICULTY_EASY) difficultyLvl = 1;
+  else if (difficulty === DIFFICULTY_MEDIUM) difficultyLvl = 2;
   else difficultyLvl = 3;
 
   const options = {
@@ -329,7 +348,7 @@ function startGame() {
   document.getElementById('mode').textContent = mode;
 
   getBoardData();
-  if (mode === 'Hints') {
+  if (mode === MODE_HINTS) {
     hintButton.style.display = 'inline';
     setHintsNum();
   } else hintButton.style.display = 'none';
