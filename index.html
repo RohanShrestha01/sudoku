@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sudoku puzzle with 3 difficulty level and 3 modes"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -39,19 +43,25 @@
             <p>Select The Difficulty</p>
             <ul>
               <li>
-                <button class="option-choice-btn m-1">Easy</button>
+                <button type="button" class="option-choice-btn m-1">
+                  Easy
+                </button>
                 <svg class="check-circle-svg">
                   <use href="#checkOutline"></use>
                 </svg>
               </li>
               <li>
-                <button class="option-choice-btn m-1">Medium</button>
+                <button type="button" class="option-choice-btn m-1">
+                  Medium
+                </button>
                 <svg class="check-circle-svg">
                   <use href="#checkOutline"></use>
                 </svg>
               </li>
               <li>
-                <button class="option-choice-btn m-1">Hard</button>
+                <button type="button" class="option-choice-btn m-1">
+                  Hard
+                </button>
                 <svg class="check-circle-svg">
                   <use href="#checkOutline"></use>
                 </svg>
@@ -62,19 +72,25 @@
             <p>Select Game Mode</p>
             <ul>
               <li>
-                <button class="option-choice-btn m-2">Timer</button>
+                <button type="button" class="option-choice-btn m-2">
+                  Timer
+                </button>
                 <svg class="check-circle-svg">
                   <use href="#checkOutline"></use>
                 </svg>
               </li>
               <li>
-                <button class="option-choice-btn m-2">Countdown</button>
+                <button type="button" class="option-choice-btn m-2">
+                  Countdown
+                </button>
                 <svg class="check-circle-svg">
                   <use href="#checkOutline"></use>
                 </svg>
               </li>
               <li>
-                <button class="option-choice-btn m-2">Hints</button>
+                <button type="button" class="option-choice-btn m-2">
+                  Hints
+                </button>
                 <svg class="check-circle-svg">
                   <use href="#checkOutline"></use>
                 </svg>
@@ -82,7 +98,7 @@
             </ul>
           </li>
           <li class="menu-option">
-            <button id="start-game-btn">
+            <button type="button" id="start-game-btn">
               <p class="m-3">Start Game</p>
             </button>
           </li>
@@ -100,11 +116,11 @@
       </header>
       <div id="middle">
         <aside>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
+          <button type="button">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button">4</button>
+          <button type="button">5</button>
         </aside>
         <main id="game-board">
           <div id="box-1" class="box"></div>
@@ -118,25 +134,25 @@
           <div id="box-9" class="box"></div>
         </main>
         <aside>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button id="svg-button">
+          <button type="button">6</button>
+          <button type="button">7</button>
+          <button type="button">8</button>
+          <button type="button">9</button>
+          <button type="button" id="svg-button">
             <svg height="25px" width="25px"><use href="#eraseSVG"></use></svg>
           </button>
         </aside>
       </div>
       <footer id="boardFooter">
-        <button id="resetBoard" class="footerBtn">
+        <button type="button" id="resetBoard" class="footerBtn">
           Reset
           <svg><use href="#resetSVG"></use></svg>
         </button>
-        <button id="showSoln" class="footerBtn">
+        <button type="button" id="showSoln" class="footerBtn">
           Show Solution
           <svg><use href="#eyeOutline"></use></svg>
         </button>
-        <button id="hintBtn">
+        <button type="button" id="hintBtn">
           <svg height="40px" width="40px"><use href="#lightBulb"></use></svg>
           <span id="hintNum"></span>
         </button>
@@ -173,7 +189,7 @@
         <li>🎮 Mode <span id="modeResult"></span></li>
         <li>⏰ Time <span id="time"></span></li>
       </ul>
-      <button id="okButton">👍 OK</button>
+      <button type="button" id="okButton">👍 OK</button>
     </fieldset>
 
     <!-- prettier-ignore -->
