@@ -151,6 +151,7 @@ function resetBoard() {
   fillBoardData(puzzle);
   if (showSolution) startCounting();
   showSolution = false;
+  selectedInputBoxId = null;
 }
 
 function showHint() {
@@ -332,6 +333,7 @@ function createBoard() {
       newInputElement.setAttribute('data-row', row);
       newInputElement.setAttribute('data-col', col);
       newInputElement.setAttribute('id', `inputBox-${count}`);
+      newInputElement.setAttribute('readonly', 'true');
       newInputElement.classList.add('inputBox', `row-${row}`, `col-${col}`);
       box.appendChild(newInputElement);
 

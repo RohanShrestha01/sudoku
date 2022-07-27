@@ -56,6 +56,7 @@ timerSVG.addEventListener(
   () => (timerSVG.firstElementChild.href.baseVal = '#pauseOutline')
 );
 timerSVG.addEventListener('click', pauseGame);
+timerSVG.addEventListener('touchend', pauseGame);
 
 showSolnButton.addEventListener('click', showSoln);
 resetBoardButton.addEventListener('click', resetBoard);
