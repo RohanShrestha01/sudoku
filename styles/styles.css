@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -85,4 +86,10 @@ li {
   font-size: 0.75rem;
   margin-top: 0.625rem;
   text-align: center;
+}
+
+@media screen and (max-width: 48rem) {
+  #main-menu-section {
+    border-radius: 0;
+  }
 }

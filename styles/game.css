@@ -167,6 +167,11 @@ aside button:focus,
   stroke: white;
 }
 
+#hintBtn svg {
+  height: 40px;
+  width: 40px;
+}
+
 #hintNum {
   font-family: 'Texturina', serif;
   font-size: 1.25rem;
@@ -178,4 +183,74 @@ aside button:focus,
 .incorrect,
 .incorrect:hover {
   color: #e41212;
+}
+
+@media screen and (max-width: 48rem) {
+  aside button {
+    height: 40px;
+    width: 40px;
+    font-size: 1.2rem;
+  }
+
+  #game-board {
+    margin: 2.5rem 1.5rem 2rem 1.5rem;
+  }
+
+  .box {
+    grid-template: repeat(3, 2.5rem) / repeat(3, 2.5rem);
+  }
+
+  .inputBox {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 35rem) {
+  #game-section h2 {
+    font-size: 1.5rem;
+  }
+
+  #middle {
+    flex-direction: column;
+    margin: 2rem 0 1.5rem 0;
+  }
+
+  aside {
+    flex-direction: row;
+  }
+
+  #game-board {
+    gap: 7px;
+    margin: 1rem auto;
+  }
+
+  #boardFooter {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 1rem;
+  }
+
+  .footerBtn {
+    font-size: 1rem;
+    height: 30px;
+    padding: 0 10px 3px 10px;
+  }
+
+  #hintBtn {
+    width: 50px;
+    margin: auto;
+  }
+
+  #hintBtn svg {
+    height: 35px;
+    width: 35px;
+  }
+
+  #hintNum {
+    font-size: 1.1rem;
+  }
+
+  #timer {
+    font-size: 1.1rem;
+  }
 }
