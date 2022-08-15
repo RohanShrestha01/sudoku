@@ -197,6 +197,7 @@ function resumeGame() {
 }
 
 function resetForRestart() {
+  for (const inputBoxEl of inputBoxElements) inputBoxEl.value = '';
   restart = true;
   selectedInputBoxId = null;
   showSolution = false;
@@ -260,7 +261,10 @@ function setTimer() {
       timerElement.textContent = TIME_HARD_TEXT;
       seconds = TIME_HARD_SECONDS;
     }
-  } else seconds = 0;
+  } else {
+    timerElement.textContent = '00:00';
+    seconds = 0;
+  }
 }
 
 function fillBoardData(sudokuPuzzle) {
@@ -279,6 +283,14 @@ function fillBoardData(sudokuPuzzle) {
       userInput[i - 1] = '';
     }
   }
+}
+
+function hideSpinner() {
+  spinnerElement.style.display = 'none';
+}
+
+function showSpinner() {
+  spinnerElement.style.display = 'block';
 }
 
 function getBoardData() {
@@ -304,8 +316,12 @@ function getBoardData() {
       puzzle = data.response['unsolved-sudoku'];
       fillBoardData(puzzle);
       solution = data.response.solution;
+      hideSpinner();
+      startCounting();
     })
-    .catch(err => console.error(err));
+    .catch(() =>
+      alert('Failed to fetch board data from API - Please Try Again Later')
+    );
 }
 
 function createBoard() {
@@ -344,19 +360,19 @@ function createBoard() {
 }
 
 function startGame() {
+  setTimer();
+  showSpinner();
+  getBoardData();
   if (!restart) createBoard();
 
   document.getElementById('difficulty').textContent = difficulty;
   document.getElementById('mode').textContent = mode;
 
-  getBoardData();
   if (mode === MODE_HINTS) {
     hintButton.style.display = 'inline';
     setHintsNum();
   } else hintButton.style.display = 'none';
 
-  setTimer();
-  startCounting();
   setFocusOnInputBox();
   gameSectionElement.style.display = 'block';
 }

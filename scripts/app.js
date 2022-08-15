@@ -6,6 +6,7 @@ const startGameBtn = document.getElementById('start-game-btn');
 const mainMenuSectionElement = document.getElementById('main-menu-section');
 const noteElement = document.getElementById('note');
 
+const spinnerElement = document.getElementById('spinner');
 const inputBoxElements = document.getElementsByClassName('inputBox');
 const gameSectionElement = document.getElementById('game-section');
 const numberButtonElements = document.querySelectorAll('aside button');

@@ -34,7 +34,7 @@
               <p>Enter Player Name</p>
             </label>
             <!-- prettier-ignore -->
-            <input type="text" id="player-name" maxlength="8" size="9" spellcheck="false" autofocus />
+            <input type="text" id="player-name" maxlength="8" size="9" spellcheck="false" autofocus autocomplete="off" />
             <svg class="check-circle-svg input-field-svg">
               <use href="#checkOutline"></use>
             </svg>
@@ -111,6 +111,8 @@
           <button>5</button>
         </aside>
         <main id="game-board">
+          <!-- prettier-ignore -->
+          <div id="spinner"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
           <div id="box-1" class="box"></div>
           <div id="box-2" class="box"></div>
           <div id="box-3" class="box"></div>
