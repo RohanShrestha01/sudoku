@@ -13,9 +13,9 @@ const TIME_MEDIUM_TEXT = '15:00';
 const TIME_HARD_SECONDS = 1200;
 const TIME_HARD_TEXT = '20:00';
 
-const HINTS_EASY = 2;
-const HINTS_MEDIUM = 4;
-const HINTS_HARD = 6;
+const HINTS_EASY = 40;
+const HINTS_MEDIUM = 50;
+const HINTS_HARD = 60;
 
 let solution, puzzle;
 let selectedInputBoxId;
@@ -160,9 +160,9 @@ function showHint() {
     const inputBoxNum = selectedInputBoxId.slice(9);
     userInput[inputBoxNum - 1] = solution[inputBoxNum - 1];
     selectedInputBox.value = solution[inputBoxNum - 1];
-    selectedInputBox.classList.add('disabled');
-    numOfHints--;
+    if (!selectedInputBox.classList.contains('disabled')) numOfHints--;
     hintNumElement.textContent = numOfHints;
+    selectedInputBox.classList.add('disabled');
     checkForIncorrectNum();
     checkForWin();
   }
@@ -287,9 +287,13 @@ function fillBoardData(sudokuPuzzle) {
 
 function hideSpinner() {
   spinnerElement.style.display = 'none';
+  backdropElement.style.display = 'none';
+  backdropElement.style.backgroundColor = '';
 }
 
 function showSpinner() {
+  backdropElement.style.display = 'block';
+  backdropElement.style.backgroundColor = 'transparent';
   spinnerElement.style.display = 'block';
 }
 
