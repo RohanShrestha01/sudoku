@@ -20,10 +20,9 @@ const HINTS_HARD = 60;
 let solution, puzzle;
 let selectedInputBoxId;
 let userInput = [];
-let seconds = 0,
-  numOfHints;
-let counter = null,
-  inputFocuser = null;
+let seconds = 0;
+let numOfHints;
+let counter = null;
 let showSolution = false;
 let restart = false;
 
@@ -47,26 +46,17 @@ function startCounting() {
   }, 1000);
 }
 
-// To focus the selected input box always
-function setFocusOnInputBox() {
-  inputFocuser = setInterval(() => {
-    const selectedInputBox = document.getElementById(selectedInputBoxId);
-    if (selectedInputBox) selectedInputBox.focus();
-  });
-}
-
 function showResult(resultText) {
   clearInterval(counter);
-  clearInterval(inputFocuser);
-  result.textContent = resultText;
-  backdropElement.style.display = 'block';
-  resultSection.style.display = 'block';
-
   const name = playerNameInputElement.value;
+  resultHeaderEl.textContent = resultText;
   playerNameResultEl.textContent = name;
   difficultyResultEl.textContent = difficulty;
   modeResultEl.textContent = mode;
   timeResultEl.textContent = timerElement.textContent;
+
+  resultSection.classList.add('open');
+  backdropElement.classList.add('open');
 }
 
 function checkForWin() {
@@ -75,8 +65,6 @@ function checkForWin() {
 }
 
 function incorrectNumChecker(arr) {
-  for (el of arr) el.classList.remove('incorrect');
-
   for (let i = 0; i < 9; i++)
     for (let j = i + 1; j < 9; j++)
       if (arr[i].value === arr[j].value && arr[i].value != '') {
@@ -86,17 +74,22 @@ function incorrectNumChecker(arr) {
 }
 
 function checkForIncorrectNum() {
-  const selectedInputBox = document.getElementById(selectedInputBoxId);
-  const row = selectedInputBox.dataset.row;
-  const col = selectedInputBox.dataset.col;
+  for (const inputBoxElement of inputBoxElements)
+    inputBoxElement.classList.remove('incorrect');
 
-  const rowElements = document.getElementsByClassName(`row-${row}`);
-  const colElements = document.getElementsByClassName(`col-${col}`);
-  const boxElements = selectedInputBox.parentElement.children;
+  for (let i = 1; i <= 81; i++) {
+    const inputBox = document.getElementById(`inputBox-${i}`);
+    const row = inputBox.dataset.row;
+    const col = inputBox.dataset.col;
 
-  incorrectNumChecker(rowElements);
-  incorrectNumChecker(colElements);
-  incorrectNumChecker(boxElements);
+    const rowElements = document.getElementsByClassName(`row-${row}`);
+    const colElements = document.getElementsByClassName(`col-${col}`);
+    const boxElements = inputBox.parentElement.children;
+
+    incorrectNumChecker(rowElements);
+    incorrectNumChecker(colElements);
+    incorrectNumChecker(boxElements);
+  }
 }
 
 function numberButtonClickHandler(event) {
@@ -109,28 +102,31 @@ function numberButtonClickHandler(event) {
       userInput[selectedInputBoxId.slice(9) - 1] = event.target.textContent;
     }
     checkForIncorrectNum();
+    checkForWin();
   }
-  checkForWin();
 }
 
 function inputValueChecker(event) {
-  const validInput = [1, 2, 3, 4, 5, 6, 7, 8, 9].includes(+event.key);
-  const disabled = event.target.classList.contains('disabled');
-  const inputBoxNum = event.target.id.slice(9);
+  const selectedInputBox = document.getElementById(selectedInputBoxId);
 
-  if (disabled || !validInput) event.preventDefault();
-  else {
-    event.target.value = event.key;
-    userInput[inputBoxNum - 1] = event.key;
+  if (selectedInputBox) {
+    const disabled = selectedInputBox.classList.contains('disabled');
+    const validInput = [1, 2, 3, 4, 5, 6, 7, 8, 9].includes(+event.key);
+    const inputBoxNum = selectedInputBoxId.slice(9);
+
+    if (disabled || !validInput) event.preventDefault();
+    else {
+      selectedInputBox.value = event.key;
+      userInput[inputBoxNum - 1] = event.key;
+    }
+
+    if (event.key === 'Backspace' && !disabled) {
+      selectedInputBox.value = '';
+      userInput[inputBoxNum - 1] = '';
+    }
+    checkForIncorrectNum();
+    checkForWin();
   }
-
-  if (event.key === 'Backspace') {
-    event.target.value = '';
-    userInput[inputBoxNum - 1] = '';
-  }
-
-  checkForIncorrectNum();
-  checkForWin();
 }
 
 function resetClassList() {
@@ -169,8 +165,8 @@ function showHint() {
 }
 
 function closePauseOverlay() {
-  backdropElement.style.display = 'none';
-  pauseSectionElement.style.display = 'none';
+  pauseSectionElement.classList.remove('open');
+  backdropElement.classList.remove('open');
 
   for (const inputBoxEl of inputBoxElements)
     inputBoxEl.setAttribute('type', 'text');
@@ -178,21 +174,19 @@ function closePauseOverlay() {
 
 function pauseGame() {
   clearInterval(counter);
-  clearInterval(inputFocuser);
-
+  document.removeEventListener('keydown', inputValueChecker);
   for (const inputBoxEl of inputBoxElements)
     inputBoxEl.setAttribute('type', 'hidden');
 
-  backdropElement.style.display = 'block';
-  pauseSectionElement.style.display = 'block';
+  pauseSectionElement.classList.add('open');
+  backdropElement.classList.add('open');
 }
 
 function resumeGame() {
   closePauseOverlay();
-
   if (!showSolution) {
     startCounting();
-    setFocusOnInputBox();
+    document.addEventListener('keydown', inputValueChecker);
   }
 }
 
@@ -202,9 +196,9 @@ function resetForRestart() {
   selectedInputBoxId = null;
   showSolution = false;
   clearInterval(counter);
-  clearInterval(inputFocuser);
   resetClassList();
   closePauseOverlay();
+  document.removeEventListener('keydown', inputValueChecker);
 }
 
 function restartGame() {
@@ -214,7 +208,7 @@ function restartGame() {
 
 function mainMenu() {
   resetForRestart();
-  resultSection.style.display = 'none';
+  resultSection.classList.remove('open');
   document.addEventListener('keydown', keyboardNavigationHandler);
   optionsChecked = 0;
   noteElement.textContent = 'You can use Arrow Keys and Enter to Navigate';
@@ -279,21 +273,20 @@ function fillBoardData(sudokuPuzzle) {
     } else {
       inputBox.value = '';
       inputBox.addEventListener('click', inputBoxSelectionHandler);
-      inputBox.addEventListener('keydown', inputValueChecker);
       userInput[i - 1] = '';
     }
   }
 }
 
 function hideSpinner() {
+  backdropElement.style.transition = '';
+  backdropElement.classList.remove('open');
   spinnerElement.style.display = 'none';
-  backdropElement.style.display = 'none';
-  backdropElement.style.backgroundColor = '';
 }
 
 function showSpinner() {
-  backdropElement.style.display = 'block';
-  backdropElement.style.backgroundColor = 'transparent';
+  backdropElement.style.transition = 'none'; // To not allow hover on input box due to .2s visibility transition of backdrop
+  backdropElement.classList.add('open');
   spinnerElement.style.display = 'block';
 }
 
@@ -377,6 +370,6 @@ function startGame() {
     setHintsNum();
   } else hintButton.style.display = 'none';
 
-  setFocusOnInputBox();
   gameSectionElement.style.display = 'block';
+  document.addEventListener('keydown', inputValueChecker);
 }

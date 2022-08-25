@@ -104,11 +104,11 @@
       </header>
       <div id="middle">
         <aside>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn">4</button>
+          <button class="btn">5</button>
         </aside>
         <main id="game-board">
           <!-- prettier-ignore -->
@@ -124,25 +124,25 @@
           <div id="box-9" class="box"></div>
         </main>
         <aside>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button id="svg-button">
+          <button class="btn">6</button>
+          <button class="btn">7</button>
+          <button class="btn">8</button>
+          <button class="btn">9</button>
+          <button id="svg-button" class="btn">
             <svg height="25px" width="25px"><use href="#eraseSVG"></use></svg>
           </button>
         </aside>
       </div>
       <footer id="boardFooter">
-        <button id="resetBoard" class="footerBtn">
+        <button id="resetBoard" class="btn footerBtn">
           Reset
           <svg><use href="#resetSVG"></use></svg>
         </button>
-        <button id="showSoln" class="footerBtn">
+        <button id="showSoln" class="btn footerBtn">
           Show Solution
           <svg><use href="#eyeOutline"></use></svg>
         </button>
-        <button id="hintBtn">
+        <button id="hintBtn" class="btn">
           <svg><use href="#lightBulb"></use></svg>
           <span id="hintNum"></span>
         </button>
@@ -179,7 +179,7 @@
         <li>🎮 Mode <span id="modeResult"></span></li>
         <li>⏰ Time <span id="time"></span></li>
       </ul>
-      <button id="okButton">👍 OK</button>
+      <button id="okButton" class="btn">👍 OK</button>
     </fieldset>
 
     <!-- prettier-ignore -->

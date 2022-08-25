@@ -1,7 +1,15 @@
+:root {
+  --color-blue-selection: blue;
+  --color-blue-hover: rgb(37, 68, 172);
+  --color-black: #2e2e2e;
+  --color-grey: #f1f2f2;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -11,10 +19,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #2e2e2e;
-  background-color: #f1f2f2;
+  color: var(--color-black);
+  background-color: var(--color-grey);
   cursor: default;
   user-select: none;
+  box-sizing: border-box;
 }
 
 li {
@@ -23,13 +32,13 @@ li {
 
 #main-menu-section {
   padding: 2.5rem 0;
-  height: 37.7rem;
+  height: 38rem;
   width: 31rem;
   display: flex;
   justify-content: center;
   border-radius: 80px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  background-color: white;
+  box-shadow: var(--box-shadow);
 }
 
 #main-menu h1 {
@@ -54,15 +63,16 @@ li {
 .menu-option p {
   font-family: 'Texturina', serif;
   font-size: 1.5rem;
+  transition: font-size 0.2s ease-out;
 }
 
 #player-name {
   font-family: inherit;
   font-size: 1.3rem;
-  font-weight: 500;
+  transition: font-size 0.2s ease-out;
   text-align: center;
-  margin-top: 0.625rem;
-  caret-color: #2e2e2e;
+  padding-top: 0.625rem;
+  caret-color: currentColor;
 }
 
 #player-name:focus-visible {
@@ -78,7 +88,9 @@ li {
 }
 
 .option-choice-btn {
+  font-family: inherit;
   font-size: 1.3rem;
+  transition: font-size 0.2s ease-out;
   padding-top: 0.625rem;
 }
 
@@ -88,7 +100,7 @@ li {
   text-align: center;
 }
 
-@media screen and (max-width: 48rem) {
+@media only screen and (max-width: 48rem) {
   #main-menu-section {
     border-radius: 0;
   }

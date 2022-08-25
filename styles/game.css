@@ -18,32 +18,58 @@ aside {
   justify-content: space-evenly;
 }
 
-aside button {
-  font-family: inherit;
-  color: #2e2e2e;
-  font-size: 1.5rem;
-  font-weight: 600;
+.btn {
+  color: var(--color-black);
   border: 1px solid white;
   background-color: white;
-  height: 50px;
-  width: 50px;
+  border-radius: 50px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
   cursor: pointer;
-  border-radius: 25px;
+  transition: all 0.2s;
 }
 
-aside button:hover {
-  background-color: #2e2e2e;
-  border-color: #2e2e2e;
-  color: white;
-  fill: white;
+@media (hover: hover) {
+  .btn:hover {
+    background-color: var(--color-black);
+    border-color: var(--color-black);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  aside button:hover {
+    color: white;
+    fill: white;
+  }
+
+  .footerBtn:hover {
+    color: white;
+    fill: white;
+    stroke: white;
+  }
+
+  #hintBtn:hover {
+    stroke: white;
+  }
+}
+
+.btn:active {
+  transform: translateY(-1px) scale(1.016);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+aside button {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 600;
+  height: 50px;
+  width: 50px;
 }
 
 #game-board {
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: var(--box-shadow);
   margin: 2.5rem 4rem 2rem 4rem;
   position: relative;
 }
@@ -57,7 +83,7 @@ aside button:hover {
   text-align: center;
   font-family: inherit;
   font-size: 1.6rem;
-  color: #2e2e2e;
+  color: var(--color-black);
   cursor: pointer;
   border: 1px solid white;
   caret-color: transparent;
@@ -65,27 +91,27 @@ aside button:hover {
 }
 
 .inputBox:hover {
-  background-color: #2e2e2e;
-  border-color: #2e2e2e;
+  background-color: var(--color-black);
+  border-color: var(--color-black);
   color: white;
 }
 
-aside button:focus,
+.btn:focus,
 .inputBox:focus {
   outline: 0;
 }
 
 .highlightRow {
-  border-color: #2e2e2e white;
+  border-color: var(--color-black) white;
 }
 
 .highlightCol {
-  border-color: white #2e2e2e;
+  border-color: white var(--color-black);
 }
 
 .highlightBox {
-  border-color: #2e2e2e;
-  background-color: #2e2e2e;
+  border-color: var(--color-black);
+  background-color: var(--color-black);
   color: white;
 }
 
@@ -113,22 +139,8 @@ aside button:focus,
   font-family: 'Texturina', serif;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #2e2e2e;
-  border: 1px solid white;
-  background-color: white;
-  cursor: pointer;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
   height: 40px;
-  border-radius: 20px;
   padding: 0 20px 5px 20px;
-}
-
-.footerBtn:hover {
-  background-color: #2e2e2e;
-  color: white;
-  border-color: #2e2e2e;
-  fill: white;
-  stroke: white;
 }
 
 .footerBtn svg {
@@ -148,24 +160,18 @@ aside button:focus,
   cursor: pointer;
   height: 24px;
   width: 24px;
+  transition: transform 0.2s ease-out;
+}
+
+#time-section svg:hover {
+  transform: scale(1.3);
 }
 
 #hintBtn {
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
-  border-radius: 50px;
   padding: 5px;
-  stroke: #2e2e2e;
+  stroke: var(--color-black);
   display: none;
   position: relative;
-}
-
-#hintBtn:hover {
-  border-color: #2e2e2e;
-  background-color: #2e2e2e;
-  stroke: white;
 }
 
 #hintBtn svg {
@@ -186,7 +192,7 @@ aside button:focus,
   color: #e41212;
 }
 
-@media screen and (max-width: 48rem) {
+@media only screen and (max-width: 48rem) {
   aside button {
     height: 40px;
     width: 40px;
@@ -206,7 +212,7 @@ aside button:focus,
   }
 }
 
-@media screen and (max-width: 35rem) {
+@media only screen and (max-width: 35rem) {
   #game-section h2 {
     font-size: 1.5rem;
   }
@@ -253,5 +259,16 @@ aside button:focus,
 
   #timer {
     font-size: 1.1rem;
+  }
+}
+
+@media (hover: none) {
+  .btn {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn:active {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
   }
 }

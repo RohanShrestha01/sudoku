@@ -1,28 +1,40 @@
 #backdrop {
-  display: none;
+  visibility: hidden;
   position: fixed;
   z-index: 1;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: all 0.2s linear;
 }
 
 .modal {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-5rem);
+  transition: all 0.2s ease-out, transform 0.4s ease-out;
   position: fixed;
   z-index: 2;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.26);
   width: 24rem;
   padding: 2.5rem 0rem;
   border-radius: 15px;
+}
+
+.open,
+#backdrop.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .modal h2 {
   font-family: 'IM Fell French Canon SC', serif;
   font-size: 2.5rem;
   color: white;
-  background-color: #2e2e2e;
+  background-color: var(--color-black);
   padding: 10px 30px;
   border-radius: 15px;
 }
@@ -42,13 +54,15 @@ legend {
 
 #iconsContainer svg {
   cursor: pointer;
-  fill: #2e2e2e;
+  fill: var(--color-black);
   height: 40px;
   width: 40px;
+  transition: transform 0.2s ease-out;
 }
 
 #iconsContainer svg:hover {
   fill: black;
+  transform: scale(1.2);
 }
 
 #result-section {
@@ -74,13 +88,11 @@ legend {
 
 #okButton {
   font-family: 'Texturina', serif;
-  cursor: pointer;
-  background-color: #2e2e2e;
+  background-color: var(--color-black);
   color: white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.26);
   padding: 5px 16px 9px 10px;
-  border-radius: 20px;
   margin-top: 2.5rem;
+  border-color: var(--color-black);
 }
 
 #okButton:hover {
@@ -93,6 +105,7 @@ legend {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
 .lds-ring {
@@ -109,10 +122,10 @@ legend {
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid #2e2e2e;
+  border: 8px solid black;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #2e2e2e transparent transparent transparent;
+  border-color: black transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {
@@ -131,5 +144,33 @@ legend {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  .modal {
+    width: 18rem;
+    padding: 1.8rem 0;
+  }
+
+  .modal h2 {
+    font-size: 2.1rem;
+  }
+
+  #iconsContainer svg {
+    height: 35px;
+    width: 35px;
+  }
+
+  #result-section {
+    padding-bottom: 1.5rem;
+  }
+
+  #result-section ul {
+    font-size: 1.1rem;
+  }
+
+  #okButton {
+    margin-top: 1.8rem;
   }
 }
