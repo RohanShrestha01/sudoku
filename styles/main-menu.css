@@ -10,15 +10,42 @@
   cursor: pointer;
 }
 
-.menu-option:hover p {
-  font-size: 1.7rem;
-  color: var(--color-blue-hover);
+.check-circle-svg {
+  visibility: hidden;
+  position: relative;
+  top: 2.5px;
 }
 
-.option-choice-btn:hover,
-.menu-option:hover #player-name {
-  font-size: 1.5rem;
-  color: var(--color-blue-hover);
+.option-choice-btn,
+.menu-option #player-name {
+  margin-right: 2px;
+  margin-left: 26.4px;
+}
+
+.input-field-svg {
+  top: 1.5px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu-option:hover p {
+    font-size: 1.7rem;
+    color: var(--color-blue-hover);
+  }
+
+  .option-choice-btn:hover,
+  .menu-option:hover #player-name {
+    font-size: 1.5rem;
+    color: var(--color-blue-hover);
+  }
+
+  .option-choice-btn:hover ~ .check-circle-svg {
+    visibility: visible;
+    color: var(--color-blue-hover);
+  }
+
+  .menu-option:hover .input-field-svg {
+    color: var(--color-blue-hover);
+  }
 }
 
 .menu-option.selected p {
@@ -32,36 +59,9 @@
   color: var(--color-blue-selection);
 }
 
-/* For check-circle icon */
-
-.check-circle-svg {
-  visibility: hidden;
-  position: relative;
-  top: 2.5px;
-}
-
-.option-choice-btn:hover ~ .check-circle-svg {
-  visibility: visible;
-  color: var(--color-blue-hover);
-}
-
 .option-choice-btn.selected ~ .check-circle-svg {
   visibility: visible;
   color: var(--color-blue-selection);
-}
-
-.option-choice-btn,
-.menu-option #player-name {
-  margin-right: 2px;
-  margin-left: 26.4px;
-}
-
-.input-field-svg {
-  top: 1.5px;
-}
-
-.menu-option:hover .input-field-svg {
-  color: var(--color-blue-hover);
 }
 
 .menu-option.selected .input-field-svg {
