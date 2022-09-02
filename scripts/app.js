@@ -9,6 +9,7 @@ const noteElement = document.getElementById('note');
 const spinnerElement = document.getElementById('spinner');
 const inputBoxElements = document.getElementsByClassName('inputBox');
 const gameSectionElement = document.getElementById('game-section');
+const gameBoardElement = document.getElementById('game-board');
 const numberButtonElements = document.querySelectorAll('aside button');
 const showSolnButton = document.getElementById('showSoln');
 const resetBoardButton = document.getElementById('resetBoard');

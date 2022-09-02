@@ -224,6 +224,7 @@ function removeSelection() {
 }
 
 function inputBoxSelectionHandler(event) {
+  if (!event.target.classList.contains('inputBox')) return;
   removeSelection();
   const row = event.target.dataset.row;
   const col = event.target.dataset.col;
@@ -272,10 +273,11 @@ function fillBoardData(sudokuPuzzle) {
       userInput[i - 1] = num;
     } else {
       inputBox.value = '';
-      inputBox.addEventListener('click', inputBoxSelectionHandler);
       userInput[i - 1] = '';
     }
   }
+
+  gameBoardElement.addEventListener('click', inputBoxSelectionHandler);
 }
 
 function hideSpinner() {
@@ -313,12 +315,13 @@ function getBoardData() {
       puzzle = data.response['unsolved-sudoku'];
       fillBoardData(puzzle);
       solution = data.response.solution;
-      hideSpinner();
       startCounting();
     })
-    .catch(() =>
-      alert('Failed to fetch board data from API - Please Try Again Later')
-    );
+    .catch(() => {
+      alert('Failed to fetch board data from API - Please Try Again');
+      mainMenu();
+    })
+    .finally(hideSpinner);
 }
 
 function createBoard() {
