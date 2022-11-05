@@ -1,0 +1,24 @@
+{
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify dev",
+    "dev": "netlify dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RohanShrestha01/Sudoku.git"
+  },
+  "keywords": [],
+  "author": "Rohan Shrestha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RohanShrestha01/Sudoku/issues"
+  },
+  "homepage": "https://github.com/RohanShrestha01/Sudoku#readme",
+  "devDependencies": {
+    "netlify-cli": "^12.1.0"
+  }
+}

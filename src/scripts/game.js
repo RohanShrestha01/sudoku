@@ -298,18 +298,7 @@ function getBoardData() {
   else if (difficulty === DIFFICULTY_MEDIUM) difficultyLvl = 2;
   else difficultyLvl = 3;
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '518b9825ecmshd0041d761926e8fp15b31djsn81bee8a1a774',
-      'X-RapidAPI-Host': 'sudoku-board.p.rapidapi.com',
-    },
-  };
-
-  fetch(
-    `https://sudoku-board.p.rapidapi.com/new-board?diff=${difficultyLvl}&stype=string&solu=true`,
-    options
-  )
+  fetch(`/.netlify/functions/board-data?difficulty=${difficultyLvl}`)
     .then(response => response.json())
     .then(data => {
       puzzle = data.response['unsolved-sudoku'];
