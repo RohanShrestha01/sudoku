@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RohanShrestha01/Sudoku.git"
+    "url": "https://github.com/RohanShrestha01/Sudoku.git"
   },
   "keywords": [],
   "author": "Rohan Shrestha",
@@ -20,5 +20,8 @@
   "homepage": "https://github.com/RohanShrestha01/Sudoku#readme",
   "devDependencies": {
     "netlify-cli": "^12.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.1.3"
   }
 }
