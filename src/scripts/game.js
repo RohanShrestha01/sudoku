@@ -293,17 +293,12 @@ function showSpinner() {
 }
 
 function getBoardData() {
-  let difficultyLvl;
-  if (difficulty === DIFFICULTY_EASY) difficultyLvl = 1;
-  else if (difficulty === DIFFICULTY_MEDIUM) difficultyLvl = 2;
-  else difficultyLvl = 3;
-
-  fetch(`/.netlify/functions/board-data?difficulty=${difficultyLvl}`)
+  fetch(`/.netlify/functions/board-data?difficulty=${difficulty}`)
     .then(response => response.json())
     .then(data => {
-      puzzle = data.response['unsolved-sudoku'];
+      puzzle = data.puzzle;
       fillBoardData(puzzle);
-      solution = data.response.solution;
+      solution = data.solution;
       startCounting();
     })
     .catch(() => {

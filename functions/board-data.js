@@ -5,20 +5,31 @@ exports.handler = async function (event) {
 
   const options = {
     method: 'GET',
-    url: `https://sudoku-board.p.rapidapi.com/new-board`,
-    params: { diff: difficulty, stype: 'string', solu: 'true' },
     headers: {
       'X-RapidAPI-Key': process.env.API_KEY,
-      'X-RapidAPI-Host': 'sudoku-board.p.rapidapi.com',
+      'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com',
     },
   };
 
   try {
-    const response = await axios(options);
+    const createResponse = await axios({
+      ...options,
+      url: `https://sudoku-generator1.p.rapidapi.com/sudoku/generate`,
+      params: { difficulty },
+    });
+
+    const solveResponse = await axios({
+      ...options,
+      url: `https://sudoku-generator1.p.rapidapi.com/sudoku/solve`,
+      params: { puzzle: createResponse.data.puzzle },
+    });
 
     return {
       statusCode: 200,
-      body: JSON.stringify(response.data),
+      body: JSON.stringify({
+        puzzle: createResponse.data.puzzle,
+        solution: solveResponse.data.solution,
+      }),
     };
   } catch (error) {
     return {
