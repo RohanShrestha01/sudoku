@@ -131,8 +131,10 @@ function inputValueChecker(event) {
 
 function resetClassList() {
   // prettier-ignore
-  for (const inputBoxElement of inputBoxElements)
+  for (const inputBoxElement of inputBoxElements) {
     inputBoxElement.classList.remove('highlightBox', 'highlightRow', 'highlightCol', 'disabled', 'incorrect');
+    inputBoxElement.removeAttribute('value');
+  }
 }
 
 function showSoln() {
@@ -191,7 +193,6 @@ function resumeGame() {
 }
 
 function resetForRestart() {
-  for (const inputBoxEl of inputBoxElements) inputBoxEl.value = '';
   restart = true;
   selectedInputBoxId = null;
   showSolution = false;
